@@ -1,0 +1,43 @@
+.container-initial {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-initial h1 {
+    color: black;
+}
+
+.container-initial-title {
+    margin-top: 8rem;
+
+}
+
+.container-initial-cards {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 8rem;
+}
+
+.container-initial-information p {
+    color: rgb(72, 72, 72);
+    padding-bottom: 10rem;
+    margin: 10rem 0 10rem 0;
+    max-width: 80vw;
+    border-bottom: 0.27rem solid lightgray;
+}
+
+.container-initial-baseBoard a {
+    text-decoration: none;
+    border-right: 0.1rem solid rgb(148, 138, 138);
+    padding: 0 1rem 0 1rem;
+}
+
+#end {
+    border-right: none;
+
+}

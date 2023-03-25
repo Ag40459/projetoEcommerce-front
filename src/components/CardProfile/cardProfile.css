@@ -1,0 +1,35 @@
+.container-cardProfile {
+    width: 80%;
+
+    display: flex;
+    border: 0.3rem solid lightblue;
+    border-radius: 1rem;
+}
+
+.container-cardProfile img {
+    width: 20rem;
+    height: 23rem;
+    border-radius: 1rem 0 0 1rem;
+    margin-right: 3rem;
+}
+
+.container-cardProfile-description {
+    cursor: pointer;
+}
+
+.container-cardProfile-description h1 {
+    color: rgb(190, 32, 107);
+}
+
+.container-cardProfile-description-detail {
+    display: flex;
+}
+
+.container-cardProfile-description-detail p {
+    padding: 0 1rem 0 1rem;
+    border-right: 0.3rem solid rgba(0, 0, 0, 0.537);
+}
+
+#container-cardProfile-description-detail-p {
+    border-right: none;
+}
