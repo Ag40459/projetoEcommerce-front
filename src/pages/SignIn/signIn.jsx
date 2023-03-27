@@ -8,7 +8,7 @@ function SignIn() {
         <div className='container-sign-in'>
             {/* <NoticeModal /> */}
             <h1>Sign In</h1>
-            <Link to='/dashboard'>Painel Principal</Link>
+            <Link to='/categories'>Painel Principal</Link>
             <Link to='/sign-up'>Cadastre-se</Link>
         </div>
     )

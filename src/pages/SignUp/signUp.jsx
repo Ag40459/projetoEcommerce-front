@@ -6,7 +6,7 @@ function SignUp() {
         <div className='container-signup'>
             <h1>SignUp</h1>
             <Link to='/'>Sair</Link>
-            <Link to='/dashboard'>Painel Principal</Link>
+            <Link to='/categories'>Categorias</Link>
         </div>
     )
 }

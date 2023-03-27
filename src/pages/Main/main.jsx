@@ -1,7 +1,7 @@
 import './main.css';
 import SignUp from '../SignUp/signUp';
 import NavBar from '../../components/NavBar/NavBar';
-import Dashboard from '../Dashboard/dashboard';
+import Categories from '../Categories/categories';
 import SignIn from '../SignIn/signIn';
 import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
 import Initial from '../Initial/initial';
@@ -35,8 +35,8 @@ function Main() {
 
           </Route>
 
-          <Route path='/dashboard' element={<NavBarInitial />} >
-            <Route path='' element={<Dashboard />} />
+          <Route path='/categories' element={<NavBarInitial />} >
+            <Route path='' element={<Categories />} />
 
           </Route>
           <Route path='/page-card' element={<NavBar />}>

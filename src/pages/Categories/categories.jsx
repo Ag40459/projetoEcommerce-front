@@ -1,11 +1,11 @@
-import './dashboard.css';
+import './categories.css';
 import { Link } from 'react-router-dom';
 import CardProfile from '../../components/CardProfile/cardProfile'
 
 
-function Dashboard() {
+function categories() {
     return (
-        <div className='container-dashboard'>
+        <div className='container-categories'>
             <CardProfile />
             <CardProfile />
             <CardProfile />
@@ -14,4 +14,4 @@ function Dashboard() {
     )
 }
 
-export default Dashboard;
+export default categories;

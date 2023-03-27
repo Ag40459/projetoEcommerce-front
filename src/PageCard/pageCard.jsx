@@ -4,7 +4,7 @@ import './pageCard.css';
 function PageCard() {
     return (
         <div className='container-pageCard'>
-            <Link to='/dashboard'>Voltar</Link>
+            <Link to='/categories'>Voltar</Link>
 
             <div>
                 <h5>Data</h5>
