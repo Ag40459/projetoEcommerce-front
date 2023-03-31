@@ -6,7 +6,7 @@ function CardCategory() {
         <div className='container-cardCategory'>
 
             <Link to="/categories"> <img
-                src="https://br.skokka.com/static/img/categories/pt/womenseekmen_repr.jpg" alt="foto de uma mulher" /></Link>
+                src="https://i.pinimg.com/originals/99/90/f3/9990f3ee805370095ac067bb6d3f68fe.jpg" alt="foto de uma mulher" /></Link>
             <Link to="/categories">
                 <div className='container-cardCategory-category'>
                     <h2>Acompanhantes</h2>

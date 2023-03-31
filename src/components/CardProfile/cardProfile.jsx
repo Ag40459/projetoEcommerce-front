@@ -4,7 +4,7 @@ import './cardProfile.css';
 function CardProfile() {
     return (
         <div className='container-cardProfile'>
-            <img src="https://br-static.imgskk.com/post/7f/78/7f78876aaebb4819b37206360b99c1bc.jpg?v=84ssm3xe" alt="foto fornecido pelo usuário" />
+            <img src="https://static.vecteezy.com/ti/vetor-gratis/p3/17450174-o-logotipo-dos-bonecos-de-neve-para-uma-empresa-de-sorvetes-e-um-design-divertido-e-caprichoso-que-captura-a-essencia-do-inverno-e-a-alegria-de-saborear-uma-deliciosa-bola-de-sorvete-gratis-vetor.jpg" alt="foto fornecido pelo usuário" />
             <Link to='/page-card'>
                 <div className='container-cardProfile-description'>
                     <h1>Título feito pelo usuário</h1>

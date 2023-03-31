@@ -5,7 +5,7 @@ import Categories from '../Categories/categories';
 import SignIn from '../SignIn/signIn';
 import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
 import Initial from '../Initial/initial';
-import NavBarInitial from '../../components/NavBarInitial/NavBarInitial'
+import NavBarLogged from '../../components/NavBarLogged/NavBarLogged'
 import PageCard from '../../PageCard/pageCard';
 
 
@@ -20,7 +20,7 @@ function Main() {
     <div className='container-main'>
       <Routes>
 
-        <Route path='/' element={<NavBarInitial />} >
+        <Route path='/' element={<NavBarLogged />} >
           <Route path='' element={<Initial />} />
         </Route>
 
@@ -35,7 +35,7 @@ function Main() {
 
           </Route>
 
-          <Route path='/categories' element={<NavBarInitial />} >
+          <Route path='/categories' element={<NavBarLogged />} >
             <Route path='' element={<Categories />} />
 
           </Route>
