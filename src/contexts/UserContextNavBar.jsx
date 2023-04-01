@@ -3,12 +3,12 @@ import useNavBarProvider from '../hooks/useNavBarProvider';
 
 const UserContext = createContext({});
 
-function UserProviderNavBar(props) {
-    const useNavBar = useNavBarProvider({});
+export function UserProviderNavBar(props) {
+    const useNavBar = useNavBarProvider();
     return (
-        <UserContext.Provider value={{ useNavBar }}>
+        <UserContext.Provider value={useNavBar}>
             {props.children}
         </UserContext.Provider>
     )
 }
-export default UserProviderNavBar;
+// export default UserContext;

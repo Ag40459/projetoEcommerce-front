@@ -1,6 +1,6 @@
 import './NavBar.css';
 import { Link, Outlet } from 'react-router-dom';
-import UserProviderNavBar from '../../contexts/UserContextNavBar';
+// import UserProviderNavBar from '../../contexts/UserContextNavBar';
 
 
 let currentPath = window.location.pathname

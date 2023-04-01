@@ -1,11 +1,11 @@
 import { useState } from "react";
 
 function useNavBarProvider() {
-    const [cardHamburguer, setCardHamburguer] = useState('');
+    const [openCloseModalMenu400, setOpenCloseModalMenu400] = useState(true);
 
     return {
-        cardHamburguer,
-        setCardHamburguer
+        openCloseModalMenu400,
+        setOpenCloseModalMenu400
     }
 }
 

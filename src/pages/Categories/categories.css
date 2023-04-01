@@ -1,9 +1,24 @@
 .container-categories {
-    min-height: calc(100vh - 6rem);
-    width: 100vw;
     display: flex;
     flex-direction: column;
+    margin-top: 1rem;
+    min-height: calc(100vh - 6rem);
+    width: 100%;
     align-items: center;
     justify-content: center;
     gap: 1rem;
+}
+
+.container-categories-meuOptions {
+    /* display: none; */
+    display: flex;
+    width: 100%;
+    padding-left: 1rem;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+}
+
+.container-categories-meuOptions:hover {
+    color: blue;
 }

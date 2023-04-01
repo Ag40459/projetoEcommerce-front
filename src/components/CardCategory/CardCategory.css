@@ -4,6 +4,10 @@
     border: 0.1rem solid lightgrey;
 }
 
+.container-cardCategory-customization-Link {
+    text-decoration: none;
+}
+
 .container-cardCategory-category {
     width: 100%;
     height: 5rem;
