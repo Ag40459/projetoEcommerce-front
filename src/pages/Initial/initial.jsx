@@ -6,7 +6,7 @@ function Initial() {
         <div className='container-initial'>
             <div className='container-initial-title'>
                 <h1>
-                    Encontros quentes na sua cidade
+                    Uma nova forma de Comprar
                 </h1>
                 <h3>
                     Tenha um encontro hoje em sua cidade, escolha sua categoria
