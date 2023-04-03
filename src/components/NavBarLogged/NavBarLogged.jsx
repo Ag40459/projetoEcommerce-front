@@ -19,10 +19,10 @@ function NavBarLogged() {
                         className='container-link'>
                         <Link
                             className='customization-Link'
-                            to='/sign-in'>Fazer login</Link>
+                            to='/'>Fazer login</Link>
                         <Link
                             className='customization-Link'
-                            to='/sign-up'>Cadastre-se</Link>
+                            to='/'>Cadastre-se</Link>
                         <button
                             className='button-announce'
                         >Publicar seu Anúncio....</button>
