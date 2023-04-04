@@ -98,11 +98,15 @@ function NavBarLogged() {
                 <ul>
                     <li
                         style={{ listStyleType: 'none' }}>
-                        <a href='/sign-in'>Fazer Login</a>
+                        <Link
+                            className='customization-Link'
+                            to='/sign-in'>Fazer login</Link>
                     </li>
                     <li
                         style={{ listStyleType: 'none' }}>
-                        <a href='/sign-up'>Cadastre-se</a>
+                        <Link
+                            className='customization-Link'
+                            to='/sign-up'>Cadastre-se</Link>
                     </li>
                     <li
                         onClick={() => setModalOpenCloseSearch(!modalOpenCloseSearch)}
