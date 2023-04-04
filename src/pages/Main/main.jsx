@@ -24,13 +24,13 @@ function Main() {
           <Route path='' element={<Initial />} />
         </Route>
 
-        <Route path='/sign-in' element={<NavBar />} >
+        <Route path='/sign-in' element={<NavBarLogged />} >
           <Route path='' element={<SignIn />} />
         </Route>
 
         <Route element={<ProtectedRoutes redirectTo={'/sign-in'} />}>
 
-          <Route path='/sign-up' element={<NavBar />}>
+          <Route path='/sign-up' element={<NavBarLogged />}>
             <Route path='' element={<SignUp />} />
 
           </Route>

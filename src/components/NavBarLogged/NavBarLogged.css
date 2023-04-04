@@ -133,6 +133,7 @@ li {
     color: white;
     font-size: x-large;
     border-radius: 0.5rem 0 0.5rem 0.5rem;
+    z-index: 1;
 
 }
 
@@ -169,8 +170,8 @@ li {
     cursor: pointer;
 }
 
-label::after,
-label::before {
+.container-NavBarLogged-main-menu-media650 label::after,
+.container-NavBarLogged-main-menu-media650 label::before {
     content: "";
     width: 100%;
     height: 0.8rem;
@@ -180,22 +181,22 @@ label::before {
     transition: all .25s ease-in-out;
 }
 
-label::before {
+.container-NavBarLogged-main-menu-media650 label::before {
     top: 0;
     box-shadow: 0 1.6rem 0 #ff0dc2;
 }
 
-label::after {
+.container-NavBarLogged-main-menu-media650 label::after {
     bottom: 0;
 }
 
-input:checked+label::before {
+.container-NavBarLogged-main-menu-media650 input:checked+label::before {
     box-shadow: none;
     transform: rotate(-45deg);
     top: 1.6rem;
 }
 
-input:checked+label::after {
+.container-NavBarLogged-main-menu-media650 input:checked+label::after {
     transform: rotate(45deg);
     bottom: 1.6rem;
 }

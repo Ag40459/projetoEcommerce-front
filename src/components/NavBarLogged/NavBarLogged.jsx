@@ -19,10 +19,10 @@ function NavBarLogged() {
                         className='container-link'>
                         <Link
                             className='customization-Link'
-                            to='/'>Fazer login</Link>
+                            to='/sign-in'>Fazer login</Link>
                         <Link
                             className='customization-Link'
-                            to='/'>Cadastre-se</Link>
+                            to='/sign-up'>Cadastre-se</Link>
                         <button
                             className='button-announce'
                         >Publicar seu Anúncio....</button>
@@ -98,11 +98,11 @@ function NavBarLogged() {
                 <ul>
                     <li
                         style={{ listStyleType: 'none' }}>
-                        Fazer Login
+                        <a href='/sign-in'>Fazer Login</a>
                     </li>
                     <li
                         style={{ listStyleType: 'none' }}>
-                        Cadastre-se
+                        <a href='/sign-up'>Cadastre-se</a>
                     </li>
                     <li
                         onClick={() => setModalOpenCloseSearch(!modalOpenCloseSearch)}

@@ -1,8 +1,110 @@
 .container-signup {
-    min-height: calc(100vh - 6rem);
-    width: 100%;
+    max-width: 100vw;
+    height: calc(100vh - 8rem);
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
+}
+
+.container-categories-meuOptions {
+    margin: 2rem 0 2rem 0;
+}
+
+.container-sign-up h1 {
+    color: black;
+}
+
+.container-sign-up-input-login {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 2rem;
+    margin-top: 5rem;
+}
+
+.container-sign-up-input-login input {
+    width: 376px;
+    height: 51px;
+    left: 123px;
+    top: 308px;
+    padding: 1rem;
+    font-size: larger;
+    background: #FDFAFA;
+    border-radius: 8px;
+    border: 1px solid #E8E8E8;
+}
+
+#openClodesEye {
+    position: absolute;
+    top: 7rem;
+    left: 15rem;
+}
+
+.container-sign-up-rules {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container-sign-up-rules-password {
+    display: flex;
+    width: 35rem;
+    height: 10rem;
+    flex-direction: column;
     justify-content: center;
+    margin-top: 1rem;
+    padding-left: 1rem;
+    background-color: lightgray;
+    gap: 1rem;
+    border-radius: 0.8rem;
+}
+
+.container-sign-up-rules-password img {
+    width: 1rem;
+}
+
+.container-signup-terms-and-conditions {
+    display: flex;
+    flex-direction: column;
+    width: 43rem;
+    padding: 0.5rem;
+    gap: 1rem;
+}
+
+.container-sign-up-input-login-hCaptcha {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 43rem;
+    height: 6rem;
+    background-color: rgb(244, 238, 238);
+    border-radius: 0.3rem;
+}
+
+.container-sign-up-relemberPassword {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.container-signup form {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+}
+
+.container-signup form button {
+    height: 5rem;
+    left: 12.2rem;
+    margin: 0 0 2rem 4rem;
+    background: #04C45C;
+    border-radius: 8px;
+}
+
+.container-signup footer {
+    border-top: 1px solid lightgray;
 }
