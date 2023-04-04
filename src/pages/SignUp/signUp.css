@@ -1,5 +1,5 @@
-.container-signup {
-    max-width: 100vw;
+.container-sign-up {
+    width: 100%;
     height: calc(100vh - 8rem);
     display: flex;
     flex-direction: column;
@@ -37,10 +37,10 @@
     border: 1px solid #E8E8E8;
 }
 
-#openClodesEye {
+.container-sign-up-input-login img {
     position: absolute;
-    top: 7rem;
-    left: 15rem;
+    bottom: 1.1rem;
+    right: 1.5rem;
 }
 
 .container-sign-up-rules {
@@ -57,7 +57,7 @@
     justify-content: center;
     margin-top: 1rem;
     padding-left: 1rem;
-    background-color: lightgray;
+    background-color: rgb(243, 237, 237);
     gap: 1rem;
     border-radius: 0.8rem;
 }
@@ -66,10 +66,10 @@
     width: 1rem;
 }
 
-.container-signup-terms-and-conditions {
+.container-sign-up-terms-and-conditions {
     display: flex;
     flex-direction: column;
-    width: 43rem;
+    width: 33rem;
     padding: 0.5rem;
     gap: 1rem;
 }
@@ -78,7 +78,8 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    width: 43rem;
+    margin-left: 1.5rem;
+    width: 30rem;
     height: 6rem;
     background-color: rgb(244, 238, 238);
     border-radius: 0.3rem;
@@ -91,20 +92,20 @@
     gap: 2rem;
 }
 
-.container-signup form {
+.container-sign-up form {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 5rem;
 }
 
-.container-signup form button {
+.container-sign-up form button {
     height: 5rem;
-    left: 12.2rem;
-    margin: 0 0 2rem 4rem;
+    width: 37.5rem;
     background: #04C45C;
     border-radius: 8px;
 }
 
-.container-signup footer {
+.container-sign-up footer {
     border-top: 1px solid lightgray;
 }

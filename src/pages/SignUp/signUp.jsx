@@ -2,12 +2,16 @@ import './signUp.css';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
-const teste = '';
+
 function SignUp() {
     const [openClodesEye, setOpenClodesEye] = useState(true);
-
+    const checkPassword = {
+        uppercase: false,
+        lowercase: false,
+        qtCharacter: false
+    };
     return (
-        <div className='container-signup'>
+        <div className='container-sign-up'>
             <div className='container-categories-meuOptions'>
                 <Link
                     style={{ textDecoration: 'none' }}
@@ -28,10 +32,11 @@ function SignUp() {
                     <input
                         type={openClodesEye ? 'password' : 'text'}
                         placeholder='Senha' />
-                    <input
-                        id='openClodesEye'
+                    <img
+                        className='openCloseEye'
                         onClick={() => setOpenClodesEye(!openClodesEye)}
-                        type='checkbox' />
+                        src={openClodesEye ? "src/assets/Input_Password_Eye_Close.svg" : "src/assets/Input_Password_Eye_Open.svg"}
+                        alt="olho sem corte?olho com corte" />
                 </div>
 
                 <div className='container-sign-up-rules'>
@@ -41,23 +46,23 @@ function SignUp() {
                     <div className='container-sign-up-rules-password'>
                         <div style={{ display: 'flex', gap: '1rem' }}>
                             <img
-                                src={teste ? 'src/assets/checked.svg' : 'src/assets/notChecked.svg'}
+                                src={checkPassword.uppercase ? 'src/assets/checked.svg' : 'src/assets/notChecked.svg'}
                                 alt="" /> <p>Uma letra maiúscula</p>
                         </div>
                         <div style={{ display: 'flex', gap: '1rem' }}>
                             <img
-                                src={teste ? 'src/assets/checked.svg' : 'src/assets/notChecked.svg'}
+                                src={checkPassword.lowercase ? 'src/assets/checked.svg' : 'src/assets/notChecked.svg'}
                                 alt="" /> <p>Uma letra minúscula</p>
                         </div>
                         <div style={{ display: 'flex', gap: '1rem' }}>
                             <img
-                                src={teste ? 'src/assets/checked.svg' : 'src/assets/notChecked.svg'}
+                                src={checkPassword.qtCharacter ? 'src/assets/checked.svg' : 'src/assets/notChecked.svg'}
                                 alt="" /> <p>Mínimo de 8 caracteres</p>
                         </div>
 
                     </div>
                 </div>
-                <div className='container-signup-terms-and-conditions'>
+                <div className='container-sign-up-terms-and-conditions'>
                     <h4>Termos, Condições e Política de Privacidade</h4>
                     <p>Li os <Link to={'/'}> Termos e Condições
                     </Link> de uso e a <a href='/'> Política de Privacidade</a> e autorizo o processamento dos meus dados pessoais para o fornecimento deste serviço na web.</p>
@@ -79,13 +84,10 @@ function SignUp() {
 
             </form>
             <footer>
-                <div className='container-initial-baseBoard'>
-                    <a href="">Termos e Condições</a>
-                    <a href="">Politica de Privacidade</a>
-                    <a href="">Fale Conosco</a>
-                    <a id='end' href="">Promover seus Anúncios</a>
-
-                </div>
+                <a href="">Termos e Condições</a>
+                <a href="">Politica de Privacidade</a>
+                <a href="">Fale Conosco</a>
+                <a id='end' href="">Promover seus Anúncios</a>
             </footer>
         </div>
     )

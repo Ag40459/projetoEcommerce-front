@@ -23,13 +23,11 @@ function Initial() {
                 </p>
             </div>
             <footer>
-                <div className='container-initial-baseBoard'>
-                    <a href="">Termos e Condições</a>
-                    <a href="">Politica de Privacidade</a>
-                    <a href="">Fale Conosco</a>
-                    <a id='end' href="">Promover seus Anúncios</a>
+                <a href="">Termos e Condições</a>
+                <a href="">Politica de Privacidade</a>
+                <a href="">Fale Conosco</a>
+                <a id='end' href="">Promover seus Anúncios</a>
 
-                </div>
             </footer>
         </div>
     )

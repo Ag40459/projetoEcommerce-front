@@ -24,3 +24,24 @@ button:hover {
 .customization-Link {
     text-decoration: none;
 }
+
+
+footer {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin: 4rem 0 4rem 0;
+    font-size: 1.2rem;
+    padding-top: 2rem;
+}
+
+footer a {
+    text-decoration: none;
+    border-right: 0.1rem solid rgb(148, 138, 138);
+    padding: 0 1rem 0 1rem;
+}
+
+.link {
+    text-decoration: none;
+    color: #000;
+}

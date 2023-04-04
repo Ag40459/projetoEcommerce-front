@@ -24,8 +24,13 @@ function NavBarLogged() {
                             className='customization-Link'
                             to='/sign-up'>Cadastre-se</Link>
                         <button
-                            className='button-announce'
-                        >Publicar seu Anúncio....</button>
+                            className='button-announce'>
+                            <Link
+                                className='link'
+                                to={'/post-ad'}>
+                                Publicar seu Anúncio...
+                            </Link>
+                        </button>
                     </div>
                     <div
                         className='container-NavBarLogged-main-menu-media650'>
@@ -113,9 +118,16 @@ function NavBarLogged() {
                         style={{ listStyleType: 'none' }}>
                         Pesquisar ...
                     </li>
-                    <button
-                        className=''
-                    >Publicar seu Anúncio</button>
+                    <button>
+                        <Link
+                            className='link'
+                            to={'/post-ad'}>
+                            Publicar Anúncio...
+                        </Link>
+                    </button>
+                    {/* <button
+                        className=''>
+                    </button> */}
                 </ul>
             </div>
             <div className='container-navBar-outlet'>

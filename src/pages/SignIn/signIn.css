@@ -11,6 +11,13 @@
     color: black;
 }
 
+.container-sign-in-welcome {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 3rem 0;
+    gap: 2rem;
+}
+
 .container-sign-in-input-login {
     display: flex;
     position: relative;
@@ -30,10 +37,11 @@
     border: 1px solid #E8E8E8;
 }
 
-#openClodesEye {
+.container-sign-in-input-login .openCloseEye {
     position: absolute;
-    top: 7rem;
-    left: 15rem;
+    bottom: 1rem;
+    right: 1rem;
+    display: flex;
 }
 
 .container-sign-in-input-login-hCaptcha {
@@ -60,13 +68,13 @@
 }
 
 .container-sign-in form button {
-    width: 375px;
-    height: 50px;
+    width: 37.5rem;
+    height: 5rem;
+    margin-bottom: 2rem;
     background: #04C45C;
     border-radius: 8px;
 }
 
 .container-sign-in footer {
     border-top: 1px solid lightgray;
-
 }

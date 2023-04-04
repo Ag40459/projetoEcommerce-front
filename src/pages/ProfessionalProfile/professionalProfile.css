@@ -1,0 +1,15 @@
+/* .container-professionalProfile {} */
+
+.container-professionalProfile-image {
+    border-bottom: 0.1rem solid lightgray;
+}
+
+.container-professionalProfile-image img {
+    width: 25rem;
+    height: 25rem;
+}
+
+.container-professionalProfile-button {
+    display: flex;
+    gap: 1rem;
+}
