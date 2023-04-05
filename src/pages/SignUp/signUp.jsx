@@ -40,7 +40,7 @@ function SignUp() {
                     <img
                         className='openCloseEye'
                         onClick={() => setOpenClodesEye(!openClodesEye)}
-                        src={openClodesEye ? { EyeClose } : { EyeOpen }}
+                        src={openClodesEye ? EyeClose : EyeOpen}
                         alt="olho sem corte?olho com corte" />
                 </div>
 
@@ -51,17 +51,17 @@ function SignUp() {
                     <div className='container-sign-up-rules-password'>
                         <div style={{ display: 'flex', gap: '1rem' }}>
                             <img
-                                src={checkPassword.uppercase ? { Checked } : { NotChecked }}
+                                src={checkPassword.uppercase ? Checked : NotChecked}
                                 alt="checked/ Notchecked" /> <p>Uma letra maiúscula</p>
                         </div>
                         <div style={{ display: 'flex', gap: '1rem' }}>
                             <img
-                                src={checkPassword.uppercase ? { Checked } : { NotChecked }}
+                                src={checkPassword.uppercase ? Checked : NotChecked}
                                 alt="checked/ Notchecked" /> <p>Uma letra minúscula</p>
                         </div>
                         <div style={{ display: 'flex', gap: '1rem' }}>
                             <img
-                                src={checkPassword.uppercase ? { Checked } : { NotChecked }}
+                                src={checkPassword.uppercase ? Checked : NotChecked}
                                 alt="checked/ Notchecked" /> <p>Mínimo de 8 caracteres</p>
                         </div>
 

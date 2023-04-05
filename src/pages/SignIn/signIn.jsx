@@ -33,8 +33,8 @@ function SignIn() {
                     <img
                         className='openCloseEye'
                         onClick={() => setOpenClodesEye(!openClodesEye)}
-                        src={openClodesEye ? { EyeClose } : { EyeOpen }}
-                        alt="olho sem corte?olho com corte" />
+                        src={openClodesEye ? EyeClose : EyeOpen}
+                        alt="olho sem corte/olho com corte" />
                 </div>
 
                 <div className='container-sign-in-input-login-hCaptcha'>
