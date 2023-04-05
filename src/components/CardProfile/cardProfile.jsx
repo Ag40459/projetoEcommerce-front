@@ -1,5 +1,8 @@
 import { Link } from 'react-router-dom';
 import './cardProfile.css';
+import Checked from "../../assets/checked.svg";
+import NotChecked from "../../assets/notChecked.svg";
+
 const checked = true;
 function CardProfile() {
     return (
@@ -7,11 +10,11 @@ function CardProfile() {
             {checked
                 ?
                 <div className='imgChecked'>
-
+                    <img src={Checked} alt="checked incone" />
                 </div>
                 :
                 <div id='imgNotChecked'>
-
+                    <img src={NotChecked} alt="NotChecked incone" />
                 </div>
             }
 
