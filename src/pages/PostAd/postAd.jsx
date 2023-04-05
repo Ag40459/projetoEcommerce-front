@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import GreenLateralBar from "../../assets/Green_Horizontal_Progress_Bar.svg";
 import GreyLateralBar from "../../assets/Grey_Horizontal_Progress_Bar.svg";
 import Phone from "../../assets/phone.svg";
+import EmailIcon from "../../assets/email.svg";
 import WhatsappIcon from "../../assets/whatsappIcon.svg";
 import './postAd.css';
 
@@ -277,7 +278,9 @@ function PostAd() {
                                         alt="envelope de email" />
                                     <h3>Número de Telefone</h3>
                                 </div>
-                                <input type="tel" placeholder='+55 11 98765 4567' />
+                                <input
+                                    type="tel"
+                                    placeholder='+55 11 98765 4567' />
                                 <div
                                     style={{ display: 'flex', marginTop: '2rem', alignItems: 'center', gap: '1rem' }}
                                 >
@@ -307,7 +310,7 @@ function PostAd() {
                                     style={{ display: 'flex', alignItems: 'center' }}>
                                     <img
                                         style={{ width: '5rem' }}
-                                        src="/src/assets/email.svg"
+                                        src={EmailIcon}
                                         alt="envelope de email" />
                                     <h3>Endereço de e-mail</h3>
                                 </div>
