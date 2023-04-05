@@ -1,5 +1,10 @@
 import './signUp.css';
 import { Link } from 'react-router-dom';
+import EyeClose from "../../assets/Input_Password_Eye_Close.svg";
+import EyeOpen from "../../assets/Input_Password_Eye_Open.svg";
+import Checked from "../../assets/checked.svg";
+import NotChecked from "../../assets/notChecked.svg";
+import hcaptcha from "../../assets/hcaptcha-2.svg";
 import { useState } from 'react';
 
 
@@ -35,7 +40,7 @@ function SignUp() {
                     <img
                         className='openCloseEye'
                         onClick={() => setOpenClodesEye(!openClodesEye)}
-                        src={openClodesEye ? "src/assets/Input_Password_Eye_Close.svg" : "src/assets/Input_Password_Eye_Open.svg"}
+                        src={openClodesEye ? { EyeClose } : { EyeOpen }}
                         alt="olho sem corte?olho com corte" />
                 </div>
 
@@ -46,18 +51,18 @@ function SignUp() {
                     <div className='container-sign-up-rules-password'>
                         <div style={{ display: 'flex', gap: '1rem' }}>
                             <img
-                                src={checkPassword.uppercase ? 'src/assets/checked.svg' : 'src/assets/notChecked.svg'}
-                                alt="" /> <p>Uma letra maiúscula</p>
+                                src={checkPassword.uppercase ? { Checked } : { NotChecked }}
+                                alt="checked/ Notchecked" /> <p>Uma letra maiúscula</p>
                         </div>
                         <div style={{ display: 'flex', gap: '1rem' }}>
                             <img
-                                src={checkPassword.lowercase ? 'src/assets/checked.svg' : 'src/assets/notChecked.svg'}
-                                alt="" /> <p>Uma letra minúscula</p>
+                                src={checkPassword.uppercase ? { Checked } : { NotChecked }}
+                                alt="checked/ Notchecked" /> <p>Uma letra minúscula</p>
                         </div>
                         <div style={{ display: 'flex', gap: '1rem' }}>
                             <img
-                                src={checkPassword.qtCharacter ? 'src/assets/checked.svg' : 'src/assets/notChecked.svg'}
-                                alt="" /> <p>Mínimo de 8 caracteres</p>
+                                src={checkPassword.uppercase ? { Checked } : { NotChecked }}
+                                alt="checked/ Notchecked" /> <p>Mínimo de 8 caracteres</p>
                         </div>
 
                     </div>
@@ -78,7 +83,7 @@ function SignUp() {
 
                     <img
                         style={{ width: '3rem' }}
-                        src="https://cdn.worldvectorlogo.com/logos/hcaptcha-2.svg" alt="" />
+                        src={hcaptcha} alt="hcaptcha" />
                 </div>
                 <button >FAZER LOGIN</button>
 

@@ -1,5 +1,8 @@
 import './signIn.css';
 import { Link } from 'react-router-dom';
+import EyeClose from "../../assets/Input_Password_Eye_Close.svg";
+import EyeOpen from "../../assets/Input_Password_Eye_Open.svg";
+import hcaptcha from "../../assets/hcaptcha-2.svg";
 import NoticeModal from '../../components/NoticeModal/noticeModal';
 import { useState } from 'react';
 
@@ -30,7 +33,7 @@ function SignIn() {
                     <img
                         className='openCloseEye'
                         onClick={() => setOpenClodesEye(!openClodesEye)}
-                        src={openClodesEye ? "src/assets/Input_Password_Eye_Close.svg" : "src/assets/Input_Password_Eye_Open.svg"}
+                        src={openClodesEye ? { EyeClose } : { EyeOpen }}
                         alt="olho sem corte?olho com corte" />
                 </div>
 
@@ -44,7 +47,7 @@ function SignIn() {
 
                     <img
                         style={{ width: '3rem' }}
-                        src="https://cdn.worldvectorlogo.com/logos/hcaptcha-2.svg" alt="" />
+                        src={hcaptcha} alt="hcaptcha" />
                 </div>
                 <button >FAZER LOGIN</button>
 
