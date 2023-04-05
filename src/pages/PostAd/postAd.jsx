@@ -271,7 +271,7 @@ function PostAd() {
                                     style={{ display: 'flex', alignItems: 'center' }}>
                                     <img
                                         style={{ width: '7rem', marginLeft: '-1.2rem' }}
-                                        src="src/assets/phone.svg"
+                                        src="../src/assets/phone.svg"
                                         alt="envelope de email" />
                                     <h3>Número de Telefone</h3>
                                 </div>
@@ -286,7 +286,7 @@ function PostAd() {
                                     />
                                     <img
                                         style={{ width: '4rem' }}
-                                        src="src/assets/whatsappIcon.svg"
+                                        src="/src/assets/whatsappIcon.svg"
                                         alt="icone zap" />
                                     <p
                                         style={!checked ? { fontSize: '2rem', color: 'lightgray' } : { fontSize: '2rem', color: '#000' }}
@@ -305,7 +305,7 @@ function PostAd() {
                                     style={{ display: 'flex', alignItems: 'center' }}>
                                     <img
                                         style={{ width: '5rem' }}
-                                        src="src/assets/email.svg"
+                                        src="/src/assets/email.svg"
                                         alt="envelope de email" />
                                     <h3>Endereço de e-mail</h3>
                                 </div>
