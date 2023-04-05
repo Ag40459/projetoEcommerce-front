@@ -5,6 +5,8 @@ import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import { Link } from 'react-router-dom';
 import GreenLateralBar from "../../assets/Green_Horizontal_Progress_Bar.svg";
 import GreyLateralBar from "../../assets/Grey_Horizontal_Progress_Bar.svg";
+import Phone from "../../assets/phone.svg";
+import WhatsappIcon from "../../assets/whatsappIcon.svg";
 import './postAd.css';
 
 
@@ -271,7 +273,7 @@ function PostAd() {
                                     style={{ display: 'flex', alignItems: 'center' }}>
                                     <img
                                         style={{ width: '7rem', marginLeft: '-1.2rem' }}
-                                        src="../src/assets/phone.svg"
+                                        src={Phone}
                                         alt="envelope de email" />
                                     <h3>Número de Telefone</h3>
                                 </div>
@@ -286,7 +288,7 @@ function PostAd() {
                                     />
                                     <img
                                         style={{ width: '4rem' }}
-                                        src="/src/assets/whatsappIcon.svg"
+                                        src={WhatsappIcon}
                                         alt="icone zap" />
                                     <p
                                         style={!checked ? { fontSize: '2rem', color: 'lightgray' } : { fontSize: '2rem', color: '#000' }}
