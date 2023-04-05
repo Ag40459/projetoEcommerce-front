@@ -10,7 +10,10 @@ function CardProfile() {
             {checked
                 ?
                 <div className='imgChecked'>
-                    <img src={Checked} alt="checked incone" />
+                    <img
+                        style={{ width: '2.5rem' }}
+                        src={Checked}
+                        alt="checked incone" />
                 </div>
                 :
                 <div id='imgNotChecked'>
