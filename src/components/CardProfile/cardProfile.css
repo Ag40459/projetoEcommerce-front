@@ -13,11 +13,12 @@
 .imgNotChecked {
     position: absolute;
     top: -1.5rem;
-    right: -8rem;
-    width: 10rem;
+    right: -1.5rem;
+    width: 3rem;
     height: 3rem;
-    background-image: url("src/assets/checked.svg");
+    background-image: url("../src/assets/checked.svg");
     background-repeat: no-repeat;
+    /* border: 0.5rem solid red */
 }
 
 .container-cardProfile img {

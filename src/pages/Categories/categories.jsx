@@ -25,7 +25,7 @@ function categories() {
             <CardProfile />
             <CardProfile />
             <CardProfile />
-            <CardProfile />
+            <CardProfile />;
 
             <footer>
                 <a href="">Termos e Condições</a>
