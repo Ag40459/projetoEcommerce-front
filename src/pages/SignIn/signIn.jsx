@@ -2,7 +2,7 @@ import './signIn.css';
 import { Link } from 'react-router-dom';
 import EyeClose from "../../assets/Input_Password_Eye_Close.svg";
 import EyeOpen from "../../assets/Input_Password_Eye_Open.svg";
-import hcaptcha from "../../assets/hcaptcha-2.svg";
+import hcaptcha from "../../assets/hcaptcha.svg";
 import NoticeModal from '../../components/NoticeModal/noticeModal';
 import { useState } from 'react';
 

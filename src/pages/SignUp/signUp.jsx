@@ -4,7 +4,7 @@ import EyeClose from "../../assets/Input_Password_Eye_Close.svg";
 import EyeOpen from "../../assets/Input_Password_Eye_Open.svg";
 import Checked from "../../assets/checked.svg";
 import NotChecked from "../../assets/notChecked.svg";
-import hcaptcha from "../../assets/hcaptcha-2.svg";
+import hcaptcha from "../../assets/hcaptcha.svg";
 import { useState } from 'react';
 
 
@@ -92,6 +92,7 @@ function SignUp() {
                 <a href="">Termos e Condições</a>
                 <a href="">Politica de Privacidade</a>
                 <a href="">Fale Conosco</a>
+                {/* <Link to={'/'}></Link> */}
                 <a id='end' href="">Promover seus Anúncios</a>
             </footer>
         </div>
