@@ -21,11 +21,6 @@ button:hover {
     opacity: 0.7;
 }
 
-.customization-Link {
-    text-decoration: none;
-}
-
-
 footer {
     display: flex;
     width: 100%;

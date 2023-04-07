@@ -383,7 +383,10 @@ function PostAd() {
                             ? { display: 'flex' }
                             : { display: 'none' }}
                         onClick={() => handleFinish()}
-                    >Finalizar
+                    ><Link
+                        className='link'
+                        to={'/'}>Finalizar
+                        </Link>
                     </button>
                     <button
                         style={adSteps.fou

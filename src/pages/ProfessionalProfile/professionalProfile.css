@@ -1,8 +1,23 @@
-/* .container-professionalProfile {} */
+.container-professionalProfile {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: calc(100vh - 13rem);
+    border: 1px solid red;
+
+}
 
 .container-professionalProfile-image {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
     border-bottom: 0.1rem solid lightgray;
 }
+
+.container-professionalProfile-description {
+    border: 1px solid red;
+}
+
 
 .container-professionalProfile-image img {
     width: 25rem;
@@ -12,4 +27,14 @@
 .container-professionalProfile-button {
     display: flex;
     gap: 1rem;
+}
+
+.container-professionalProfile-descriptio-profile {
+    display: flex;
+    flex-direction: column;
+    margin-left: 2rem;
+    margin-top: -2rem;
+    width: 95%;
+    height: 6rem;
+    background-color: #f1f3f4;
 }

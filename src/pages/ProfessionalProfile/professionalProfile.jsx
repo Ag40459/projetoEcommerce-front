@@ -7,12 +7,20 @@ function ProfessionalProfile() {
             <Link to='/categories'>Voltar</Link>
 
             <div>
-                <h5>Data</h5>
                 <div className='container-professionalProfile-description'>
-                    <div className='container-professionalProfile-description-detail'>
-                        <p>Idade</p>
-                        <p>Categoria</p>
-                        <p id='container-professionalProfile-description-detail-p'>Cidade</p>
+                    <div
+                        style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+                        <div
+                            style={{ display: 'flex', gap: '2rem' }}>
+
+                            <p>Data</p>
+                            <p>Plano</p>
+                        </div>
+                        <div style={{ display: 'flex', gap: '2rem' }}>
+                            <p>Idade: { }</p>
+                            <p>Categoria: { }</p>
+                            <p>Cidade: { }</p>
+                        </div>
                     </div>
                     <h1>Título feito pelo usuário</h1>
                     <h3>Descrição feito pelo usuário</h3>
