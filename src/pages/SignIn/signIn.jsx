@@ -51,11 +51,12 @@ function SignIn() {
                 </div>
                 <button
                     style={{ width: '100%' }}
-                ><a
+                ><Link
                     className='link'
-                    href='/professional-home'>
+                    to={'/professional-home'}
+                >
                         FAZER LOGIN
-                    </a>
+                    </Link>
                 </button>
 
             </form>
