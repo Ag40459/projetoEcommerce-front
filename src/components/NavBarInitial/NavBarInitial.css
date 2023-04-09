@@ -63,6 +63,12 @@ li {
     font-size: larger;
 }
 
+.button-announce {
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+
+}
+
 .customization-Link {
     color: #9F1959;
     font-size: 2.5rem;

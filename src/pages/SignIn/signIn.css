@@ -26,7 +26,7 @@
 }
 
 .container-sign-in-input-login input {
-    width: 376px;
+    width: 100%;
     height: 51px;
     left: 123px;
     top: 308px;
@@ -64,6 +64,13 @@
 .container-sign-in form {
     display: flex;
     flex-direction: column;
+    gap: 5rem;
+}
+
+.container-sign-in form .container-sign-in-input-login {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
     gap: 5rem;
 }
 

@@ -85,7 +85,10 @@ function SignUp() {
                         style={{ width: '3rem' }}
                         src={hcaptcha} alt="hcaptcha" />
                 </div>
-                <button >FAZER LOGIN</button>
+                <button
+                    style={{ width: '100%' }}
+                >CADASTRAR
+                </button>
 
             </form>
             <footer>

@@ -136,9 +136,10 @@ li {
     width: auto;
     height: auto;
     padding: 2rem 3.5rem 2rem 2rem;
-    top: 14rem;
+    margin-top: -2rem;
     right: 0;
-    margin-top: 0.07rem;
+    margin-top: 13.2rem;
+    margin-right: 0.2rem;
     justify-content: space-between;
     background-color: #FF8C94;
     background-image: linear-gradient(to bottom, #FF8C94 0%, #E55A6F 100%);
@@ -308,7 +309,7 @@ li {
     }
 
     .container-NavBarProfessional-main-openMenu-media650 {
-        top: 9.2rem;
+        top: -5rem;
     }
 
     .container-NavBarProfessional-main-openMenu-media650 button {

@@ -25,10 +25,14 @@ function ProfessionalHomePage() {
                             >Anúncios</h4>
 
                         </div>
-                        <h1
-                            style={{ color: 'purple' }}>                    
-                        >
+                        <h1 style={{
+                            fontSize: '2.5rem',
+                            fontWeight: '600',
+                            color: '#800080'
+                        }}>
+                            &gt;
                         </h1>
+
                     </div>
                     <div className='container-card-professional-homePage-options-announcement-detail'>
 
@@ -69,10 +73,14 @@ function ProfessionalHomePage() {
                             >Crédito</h4>
 
                         </div>
-                        <h1
-                            style={{ color: 'purple' }}>                    
-                        >
+                        <h1 style={{
+                            fontSize: '2.5rem',
+                            fontWeight: '600',
+                            color: '#800080'
+                        }}>
+                            &gt;
                         </h1>
+
                     </div>
                     <div className='container-card-professional-homePage-options-credit-detail'>
 
@@ -113,10 +121,14 @@ function ProfessionalHomePage() {
                             >Produtos</h4>
 
                         </div>
-                        <h1
-                            style={{ color: 'purple' }}>                    
-                        >
+                        <h1 style={{
+                            fontSize: '2.5rem',
+                            fontWeight: '600',
+                            color: '#800080'
+                        }}>
+                            &gt;
                         </h1>
+
                     </div>
                     <div className='container-card-professional-homePage-options-product-detail'>
 
@@ -157,10 +169,14 @@ function ProfessionalHomePage() {
                             >Editar Perfil</h4>
 
                         </div>
-                        <h1
-                            style={{ color: 'purple' }}>                    
-                        >
+                        <h1 style={{
+                            fontSize: '2.5rem',
+                            fontWeight: '600',
+                            color: '#800080'
+                        }}>
+                            &gt;
                         </h1>
+
                     </div>
                     <div className='container-card-professional-homePage-options-editProfile-detail'>
 

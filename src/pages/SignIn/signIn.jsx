@@ -49,7 +49,9 @@ function SignIn() {
                         style={{ width: '3rem' }}
                         src={hcaptcha} alt="hcaptcha" />
                 </div>
-                <button >FAZER LOGIN</button>
+                <button
+                    style={{ width: '100%' }}
+                >FAZER LOGIN</button>
 
             </form>
 

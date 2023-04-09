@@ -7,6 +7,10 @@
     justify-content: space-between;
 }
 
+.container-sign-up form .container-sign-up-input-login {
+    width: 100%;
+}
+
 .container-categories-meuOptions {
     margin: 2rem 0 2rem 0;
 }
@@ -26,15 +30,15 @@
 }
 
 .container-sign-up-input-login input {
-    width: 376px;
-    height: 51px;
-    left: 123px;
-    top: 308px;
+    width: 100%;
+    height: 5.1rem;
+    left: 12.3rem;
+    top: 30.8rem;
     padding: 1rem;
     font-size: larger;
     background: #FDFAFA;
-    border-radius: 8px;
-    border: 1px solid #E8E8E8;
+    border-radius: 0.8rem;
+    border: 0.1rem solid #E8E8E8;
 }
 
 .container-sign-up-input-login img {

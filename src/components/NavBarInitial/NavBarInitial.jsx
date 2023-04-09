@@ -1,11 +1,39 @@
 import './NavBarInitial.css';
 import Search from "../../assets/search.svg";
+import ProfessionalHomePage from '../../pages/ProfessionalHomePage/professionalHomePage';
 import { Link, Outlet } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function NavBarInitial() {
     const [modalOpenCloseMenu, setModalOpenCloseMenu] = useState(false);
     const [modalOpenCloseSearch, setModalOpenCloseSearch] = useState(false);
+
+    useEffect(() => {
+        function handleResize() {
+            // verifique se a largura da janela é menor ou igual a 650 pixels (ou outro valor que você esteja usando para o breakpoint)
+            if (window.innerWidth <= 650) {
+                // se sim, mantenha o estado atual da segunda div
+                setModalOpenCloseSearch(modalOpenCloseSearch);
+                setModalOpenCloseMenu(modalOpenCloseMenu)
+            } else {
+                // se não, redefina o estado da segunda div para false
+                setModalOpenCloseSearch(false);
+                setModalOpenCloseMenu(false)
+            }
+        }
+
+        // execute a função de tratamento de redimensionamento uma vez quando o componente for montado
+        handleResize();
+
+        // execute a função de tratamento de redimensionamento sempre que a largura da janela for alterada
+        window.addEventListener('resize', handleResize);
+        console.log(window.innerWidth);
+        // limpe o ouvinte de redimensionamento quando o componente for desmontado
+        return () => window.removeEventListener('resize', handleResize);
+
+
+    }, [modalOpenCloseSearch]);
+
 
     return (
         <div
@@ -19,7 +47,7 @@ function NavBarInitial() {
                         className='container-link'>
                         <Link
                             className='customization-Link'
-                            to='/sign-in'>Fazer login</Link>
+                            to='/professional-home'>Fazer login</Link>
                         <Link
                             className='customization-Link'
                             to='/sign-up'>Cadastre-se</Link>
@@ -106,7 +134,7 @@ function NavBarInitial() {
                         style={{ listStyleType: 'none' }}>
                         <Link
                             className='customization-Link'
-                            to='/sign-in'>Fazer login</Link>
+                            to='/professional-home'>Fazer login</Link>
                     </li>
                     <li
                         style={{ listStyleType: 'none' }}>
