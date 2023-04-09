@@ -49,22 +49,21 @@ function SignIn() {
                         style={{ width: '3rem' }}
                         src={hcaptcha} alt="hcaptcha" />
                 </div>
-                {/* <button
+                <span
                     style={{ width: '100%' }}
-                > */}
-                <Link
-                    className='link'
-                    to={'/professional-home'}
                 >
-                    FAZER LOGIN
-                </Link>
-                {/* </button> */}
+                    <Link
+                        className='link'
+                        to={'/professional-home'}
+                    >
+                        FAZER LOGIN
+                    </Link>
+                </span>
 
             </form>
 
             <div className='container-sign-in-relemberPassword'>
                 <Link
-                    className='linkButton'
                     to={'/forgot-password'} >Esqueceu sua senha?</Link>
                 <p>Ainda não tem uma conta? <Link to={'/sign-up'}>Cadastre-se</Link></p>
 
