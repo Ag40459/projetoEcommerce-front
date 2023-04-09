@@ -51,12 +51,18 @@ function SignIn() {
                 </div>
                 <button
                     style={{ width: '100%' }}
-                >FAZER LOGIN</button>
+                ><a
+                    className='link'
+                    href='/professional-home'>
+                        FAZER LOGIN
+                    </a>
+                </button>
 
             </form>
 
             <div className='container-sign-in-relemberPassword'>
-                <Link to={'/forgot-password'} >Esqueceu sua senha?</Link>
+                <Link
+                    to={'/forgot-password'} >Esqueceu sua senha?</Link>
                 <p>Ainda não tem uma conta? <Link to={'/sign-up'}>Cadastre-se</Link></p>
 
             </div>

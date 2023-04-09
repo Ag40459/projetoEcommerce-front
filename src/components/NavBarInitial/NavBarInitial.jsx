@@ -47,7 +47,7 @@ function NavBarInitial() {
                         className='container-link'>
                         <Link
                             className='customization-Link'
-                            to='/professional-home'>Fazer login</Link>
+                            to='/sign-in'>Fazer login</Link>
                         <Link
                             className='customization-Link'
                             to='/sign-up'>Cadastre-se</Link>
@@ -134,7 +134,7 @@ function NavBarInitial() {
                         style={{ listStyleType: 'none' }}>
                         <Link
                             className='customization-Link'
-                            to='/professional-home'>Fazer login</Link>
+                            to='/sign-in'>Fazer login</Link>
                     </li>
                     <li
                         style={{ listStyleType: 'none' }}>
