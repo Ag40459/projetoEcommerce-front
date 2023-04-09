@@ -7,7 +7,7 @@ import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
 import Initial from '../Initial/initial';
 import NavBarInitial from '../../components/NavBarInitial/NavBarInitial';
 import ForgotPassword from '../ForgotPassword/forgotPassword';
-import ProfessionalHomePage from '../ProfessionalHomePage/professionalhomepage';
+import ProfessionalHomePage from '../ProfessionalHomePage/professionalHomePage';
 import PostAd from '../PostAd/postAd';
 import ProfessionalProfile from '../../pages/ProfessionalProfile/professionalProfile';
 
@@ -48,7 +48,7 @@ function Main() {
 
         <Route element={<ProtectedRoutes redirectTo={'/sign-in'} />}>
 
-          <Route path='/page-professional-home' element={<NavBarProfessional />}>
+          <Route path='/professional-home' element={<NavBarProfessional />}>
             <Route path='' element={<ProfessionalHomePage />} />
           </Route>
 

@@ -3,7 +3,6 @@
     flex-direction: column;
     width: 100%;
     min-height: calc(100vh - 13rem);
-    border: 1px solid red;
 
 }
 
@@ -14,9 +13,7 @@
     border-bottom: 0.1rem solid lightgray;
 }
 
-.container-professionalProfile-description {
-    border: 1px solid red;
-}
+.container-professionalProfile-description {}
 
 
 .container-professionalProfile-image img {
