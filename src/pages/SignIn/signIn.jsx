@@ -4,10 +4,17 @@ import EyeClose from "../../assets/Input_Password_Eye_Close.svg";
 import EyeOpen from "../../assets/Input_Password_Eye_Open.svg";
 import hcaptcha from "../../assets/hcaptcha.svg";
 import NoticeModal from '../../components/NoticeModal/noticeModal';
+import { GoogleReCaptcha } from 'react-google-recaptcha'
 import { useState } from 'react';
 
 function SignIn() {
     const [openClodesEye, setOpenClodesEye] = useState(true);
+    const [captchaFilled, setCaptchaFilled] = useState(false);
+
+    const handleCaptchaChange = () => {
+        setCaptchaFilled(true);
+    }
+
     return (
         <div className='container-sign-in'>
             <div className='container-categories-meuOptions'>
@@ -45,9 +52,10 @@ function SignIn() {
                         <p id=''>Sou humano</p>
                     </div>
 
-                    <img
-                        style={{ width: '3rem' }}
-                        src={hcaptcha} alt="hcaptcha" />
+                    <GoogleReCaptcha
+                        sitekey="6LecsHslAAAAAKxcwBpBrUe48RR6RVoSKnePdIyc"
+                        onChange={handleCaptchaChange}
+                    />
                 </div>
                 <span
                     style={{ width: '100%' }}
@@ -59,6 +67,7 @@ function SignIn() {
                         FAZER LOGIN
                     </Link>
                 </span>
+                <button type="submit" disabled={!captchaFilled}>Sign In</button>
 
             </form>
 
