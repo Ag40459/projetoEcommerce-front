@@ -28,6 +28,8 @@
 }
 
 .container-initial-information p {
+    display: flex;
+    text-align: justify;
     color: rgb(72, 72, 72);
     padding: 5rem 0 5rem 0;
     max-width: 80vw;

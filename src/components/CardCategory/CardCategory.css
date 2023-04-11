@@ -22,11 +22,14 @@
 
 .container-cardCategory-description {
     display: flex;
-    text-align: initial;
-    justify-content: center;
     margin: 1rem 1rem;
     color: gray;
     font-size: 1.4rem;
+}
+
+.container-cardCategory-description h3 {
+    display: flex;
+    text-align: justify;
 }
 
 .container-cardCategory img {
