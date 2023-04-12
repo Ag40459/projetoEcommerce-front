@@ -11,4 +11,4 @@ export function UserProviderNavBar(props) {
         </UserContext.Provider>
     )
 }
-// export default UserContext;
+export default UserContext;

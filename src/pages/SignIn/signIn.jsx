@@ -2,19 +2,21 @@ import './signIn.css';
 import { Link } from 'react-router-dom';
 import EyeClose from "../../assets/Input_Password_Eye_Close.svg";
 import EyeOpen from "../../assets/Input_Password_Eye_Open.svg";
-import hcaptcha from "../../assets/hcaptcha.svg";
+import hcaptchaImg from "../../assets/hcaptcha.svg";
 import NoticeModal from '../../components/NoticeModal/noticeModal';
-import { GoogleReCaptcha } from 'react-google-recaptcha'
+import { ReCAPTCHA } from 'react-google-recaptcha'
 import { useState } from 'react';
+import useNavBarProvider from '../../hooks/useNavBarProvider.jsx'
+
 
 function SignIn() {
-    const [openClodesEye, setOpenClodesEye] = useState(true);
-    const [captchaFilled, setCaptchaFilled] = useState(false);
+    const { openClodesEye, setOpenClodesEye } = useNavBarProvider();
+    const { captchaFilled, setCaptchaFilled } = useNavBarProvider();
 
     const handleCaptchaChange = () => {
         setCaptchaFilled(true);
     }
-
+    console.log(captchaFilled);
     return (
         <div className='container-sign-in'>
             <div className='container-categories-meuOptions'>
@@ -32,7 +34,7 @@ function SignIn() {
                 <div className='container-sign-in-input-login'>
                     <input
                         type="email"
-                        id=''
+                        id="emailInput"
                         placeholder='E-mail' />
                     <input
                         type={openClodesEye ? 'password' : 'text'}
@@ -45,18 +47,17 @@ function SignIn() {
                 </div>
 
                 <div className='container-sign-in-input-login-hCaptcha'>
-                    <div
-                        style={{ display: 'flex', gap: '3rem' }}>
-
-                        <input type="checkbox" name="" id="checkboxHCaptcha" />
-                        <p id=''>Sou humano</p>
+                    <div style={{ display: 'flex', gap: '3rem' }}>
+                        <img src={hcaptchaImg} alt='hcaptchaImg' className='hcaptcha-icon' />
+                        <button type='button' onClick={() => window.hcaptcha.execute()}>Identificar como humano</button>
                     </div>
-
-                    <GoogleReCaptcha
+                    <ReCAPTCHA
                         sitekey="6LecsHslAAAAAKxcwBpBrUe48RR6RVoSKnePdIyc"
                         onChange={handleCaptchaChange}
+                        data-callback="handleCaptchaChange"
                     />
                 </div>
+
                 <span
                     style={{ width: '100%' }}
                 >
@@ -68,6 +69,9 @@ function SignIn() {
                     </Link>
                 </span>
                 <button type="submit" disabled={!captchaFilled}>Sign In</button>
+
+
+
 
             </form>
 
