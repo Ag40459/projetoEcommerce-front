@@ -2,8 +2,14 @@ import './professionalHomePage.css';
 import AnnouncementIcon from '../../assets/announcementIcon.svg';
 import EditProfileIcon from '../../assets/editProfileIcon.svg';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 function ProfessionalHomePage() {
+
+    const [arrayCredit, setArrayCredit] = useState([{ currentCredit: 0 }, { usedCredit: 0 }]);
+    // const [arrayCredi, setArrayCredit] = useState([{ currentCredit: 0 }, { usedCredit: 0 }]);
+    // const [arrayCredit, setArrayCredit] = useState([{ currentCredit: 0 }, { usedCredit: 0 }]);
+
     return (
         <div className='container-professional-homePage'>
 
@@ -13,6 +19,7 @@ function ProfessionalHomePage() {
             </div>
 
             <div className='container-professional-homePage-options'>
+
                 <div className='container-card-professional-homePage-options-announcement'>
                     <div className='container-card-professional-homePage-options-announcement-title'>
                         <div
@@ -97,19 +104,19 @@ function ProfessionalHomePage() {
 
                         <div className='container-card-professional-homePage-options-credit-detail-pSpan'>
                             <p>
-                                Ativos
+                                Créditos atuais
                             </p>
                             <span>
-                                0
+                                {arrayCredit[0].currentCredit}
                             </span>
                         </div>
                         <div className='container-card-professional-homePage-options-credit-detail-pSpan'>
 
                             <p>
-                                Não Publicados
+                                Créditos usados
                             </p>
                             <span>
-                                0
+                                {arrayCredit[1].usedCredit}
                             </span>
                         </div>
 
@@ -151,21 +158,13 @@ function ProfessionalHomePage() {
 
                         <div className='container-card-professional-homePage-options-product-detail-pSpan'>
                             <p>
-                                Ativos
+                                Compre nossos produtos para estar sempre no topo
                             </p>
                             <span>
                                 0
                             </span>
                         </div>
-                        <div className='container-card-professional-homePage-options-product-detail-pSpan'>
 
-                            <p>
-                                Não Publicados
-                            </p>
-                            <span>
-                                0
-                            </span>
-                        </div>
 
                     </div>
                 </div>
@@ -204,21 +203,11 @@ function ProfessionalHomePage() {
 
                         <div className='container-card-professional-homePage-options-editProfile-detail-pSpan'>
                             <p>
-                                Ativos
+                                Gerencie suas informações pessoais.
                             </p>
-                            <span>
-                                0
-                            </span>
-                        </div>
-                        <div className='container-card-professional-homePage-options-editProfile-detail-pSpan'>
 
-                            <p>
-                                Não Publicados
-                            </p>
-                            <span>
-                                0
-                            </span>
                         </div>
+
 
                     </div>
                 </div>
