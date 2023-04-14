@@ -8,9 +8,9 @@ function CreditsProfessional() {
 
     return (
         <div className='container-creditsProfessional'>
-            <div className='container-categories-meuOptions'>
+            <div className='container-back-page'>
                 <Link className='link' to='/professional-home'>
-                    Voltar para Home
+                    Voltar
                 </Link>
             </div>
             <h1>Comprar Créditos</h1>

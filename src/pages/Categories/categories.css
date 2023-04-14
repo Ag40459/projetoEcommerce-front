@@ -9,7 +9,7 @@
     gap: 1rem;
 }
 
-.container-categories-meuOptions {
+.container-categories-container-back-page {
     /* display: none; */
     display: flex;
     width: 100%;
@@ -19,6 +19,6 @@
     cursor: pointer;
 }
 
-.container-categories-meuOptions:hover {
+.container-categories-container-back-page:hover {
     color: blue;
 }

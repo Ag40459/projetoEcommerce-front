@@ -17,7 +17,7 @@ function SignUp() {
     };
     return (
         <div className='container-sign-up'>
-            <div className='container-categories-meuOptions'>
+            <div className='container-back-page'>
                 <Link
                     style={{ textDecoration: 'none' }}
                     to='/'>

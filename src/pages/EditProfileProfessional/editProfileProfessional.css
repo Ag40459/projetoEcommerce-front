@@ -1,0 +1,8 @@
+.container-editProfileProfessional {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 100vw;
+    height: calc(100vh - 14rem);
+}

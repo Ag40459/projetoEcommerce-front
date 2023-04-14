@@ -6,7 +6,7 @@ import CardProfile from '../../components/CardProfile/cardProfile'
 function categories() {
     return (
         <div className='container-categories'>
-            <div className='container-categories-meuOptions'>
+            <div className='container-back-page'>
                 <Link
                     style={{ textDecoration: 'none' }}
                     to='/'>

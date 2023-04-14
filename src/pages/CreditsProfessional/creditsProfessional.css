@@ -52,6 +52,7 @@
 
 .container-creditsProfessional-card-credits-discount {
     display: none;
+    height: 4rem;
     border: 1px solid rgb(40, 148, 40);
     background-color: #d0f3b3;
     border-radius: 10px 0 0 10px;
@@ -147,4 +148,15 @@ p:first-of-type {
 
 p:last-of-type {
     color: blue;
+}
+
+@media (max-width:650px) {
+    .container-creditsProfessional-card-credits-discount {
+        border: 1px solid blue;
+        font-size: small;
+    }
+
+    .container-creditsProfessional-card-credits h3 {
+        font-size: medium;
+    }
 }

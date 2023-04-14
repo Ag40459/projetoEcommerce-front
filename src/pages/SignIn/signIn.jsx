@@ -28,7 +28,7 @@ function SignIn() {
     console.log(showAlert)
     return (
         <div className='container-sign-in'>
-            <div className='container-categories-meuOptions'>
+            <div className='container-back-page'>
                 <Link className='link' to='/'>
                     Voltar para Home
                 </Link>
@@ -77,7 +77,7 @@ function SignIn() {
                 <a href="">Fale Conosco</a>
                 <a id='end' href="">Promover seus Anúncios</a>
             </footer>
-            {!showAlert &&
+            {showAlert &&
                 <div
                     className='container-sign-in-messageAlert'>
                     <MessageAlert message="Preencha todos os campos." />

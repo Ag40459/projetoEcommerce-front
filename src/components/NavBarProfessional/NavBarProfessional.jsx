@@ -116,7 +116,7 @@ function NavBarProfessional() {
                         style={{ listStyleType: 'none' }}>
                         <Link
                             className='customization-link-prof'
-                            to='/sign-in'>
+                            to='/professional-home'>
                             PAINEL INICIAL
                         </Link>
                     </li>
@@ -124,8 +124,8 @@ function NavBarProfessional() {
                         style={{ listStyleType: 'none' }}>
                         <Link
                             className='customization-link-prof'
-                            to='/sign-up'>
-                            ANÚNCIOS
+                            to='/your-ads-professional'>
+                            SEUS ANÚNCIOS
                         </Link>
                     </li>
                     <li
@@ -140,15 +140,15 @@ function NavBarProfessional() {
                         style={{ listStyleType: 'none' }}>
                         <Link
                             className='customization-link-prof'
-                            to='/sign-up'>
-                            PRODUTOS
+                            to='/our-plans'>
+                            NOSSOS PLANOS
                         </Link>
                     </li>
                     <li
                         style={{ listStyleType: 'none' }}>
                         <Link
                             className='customization-link-prof'
-                            to='/'>
+                            to='/edit-profileProfessional'>
                             EDITAR PERFIL
                         </Link>
                     </li>
@@ -160,7 +160,7 @@ function NavBarProfessional() {
                         }}>
                         <Link
                             className='customization-link-prof'
-                            to='/sign-up'>
+                            to='/'>
                             Encerrar sessão
                         </Link>
                     </li>

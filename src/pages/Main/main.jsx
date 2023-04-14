@@ -12,6 +12,9 @@ import PostAd from '../PostAd/postAd';
 import ProfessionalProfile from '../../pages/ProfessionalProfile/professionalProfile';
 import CreditsProfessional from '../CreditsProfessional/creditsProfessional';
 import TransactionHistory from '../TransactionHistory/transactionHistory';
+import EditProfileProfessional from '../EditProfileProfessional/editProfileProfessional';
+import OurPlans from '../OurPlans/OurPlans';
+import YourAdsProfessional from '../YourAdsProfessional/yourAdsProfessional';
 
 
 
@@ -51,6 +54,14 @@ function Main() {
 
         <Route element={<ProtectedRoutes redirectTo={'/sign-in'} />}>
 
+          <Route path='/your-ads-professional' element={<NavBarProfessional />}>
+            <Route path='' element={<YourAdsProfessional />} />
+          </Route>
+
+          <Route path='/our-plans' element={<NavBarProfessional />}>
+            <Route path='' element={<OurPlans />} />
+          </Route>
+
           <Route path='/professional-home' element={<NavBarProfessional />}>
             <Route path='' element={<ProfessionalHomePage />} />
           </Route>
@@ -61,6 +72,10 @@ function Main() {
 
           <Route path='/transaction-history' element={<NavBarProfessional />}>
             <Route path='' element={<TransactionHistory />} />
+          </Route>
+
+          <Route path='/edit-profileProfessional' element={<NavBarProfessional />}>
+            <Route path='' element={<EditProfileProfessional />} />
           </Route>
 
         </Route>

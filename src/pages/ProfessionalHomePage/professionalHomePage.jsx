@@ -1,6 +1,7 @@
 import './professionalHomePage.css';
 import AnnouncementIcon from '../../assets/announcementIcon.svg';
 import EditProfileIcon from '../../assets/editProfileIcon.svg';
+import { Link } from 'react-router-dom';
 
 function ProfessionalHomePage() {
     return (
@@ -20,9 +21,14 @@ function ProfessionalHomePage() {
                                 style={{ width: '2rem' }}
                                 src={AnnouncementIcon}
                                 alt="incone de um papel" />
-                            <h4
-                                style={{ paddingTop: '0.4rem' }}
-                            >Anúncios</h4>
+                            <Link
+                                className='link'
+                                to={'/your-ads-professional'}>
+                                <h4
+                                    style={{ paddingTop: '0.4rem', color: '#800080' }}>
+                                    Seus Anuncios
+                                </h4>
+                            </Link>
 
                         </div>
                         <h1 style={{
@@ -68,9 +74,14 @@ function ProfessionalHomePage() {
                                 style={{ width: '2rem' }}
                                 src={AnnouncementIcon}
                                 alt="incone de um papel" />
-                            <h4
-                                style={{ paddingTop: '0.4rem' }}
-                            >Crédito</h4>
+                            <Link
+                                className='link'
+                                to={'/credits-Professional'}>
+                                <h4
+                                    style={{ paddingTop: '0.4rem', color: '#800080' }}>
+                                    Crédito
+                                </h4>
+                            </Link>
 
                         </div>
                         <h1 style={{
@@ -116,9 +127,15 @@ function ProfessionalHomePage() {
                                 style={{ width: '2rem' }}
                                 src={AnnouncementIcon}
                                 alt="incone de um papel" />
-                            <h4
-                                style={{ paddingTop: '0.4rem' }}
-                            >Produtos</h4>
+
+                            <Link
+                                className='link'
+                                to={'/our-plans'}>
+                                <h4
+                                    style={{ paddingTop: '0.4rem', color: '#800080' }}>
+                                    Nossos Planos
+                                </h4>
+                            </Link>
 
                         </div>
                         <h1 style={{
@@ -164,9 +181,14 @@ function ProfessionalHomePage() {
                                 style={{ width: '2rem' }}
                                 src={EditProfileIcon}
                                 alt="incone de um papel" />
-                            <h4
-                                style={{ paddingTop: '0.4rem' }}
-                            >Editar Perfil</h4>
+                            <Link
+                                className='link'
+                                to={'/edit-profileProfessional'}>
+                                <h4
+                                    style={{ paddingTop: '0.4rem', color: '#800080' }}>
+                                    Editar Perfil
+                                </h4>
+                            </Link>
 
                         </div>
                         <h1 style={{
@@ -208,6 +230,7 @@ function ProfessionalHomePage() {
                 <a id='end' href="">Promover seus Anúncios</a>
 
             </footer>
+
         </div>
     )
 }

@@ -4,7 +4,7 @@ import './forgotPassword.css';
 function ForgotPassword() {
     return (
         <div className='container-forgot-password'>
-            <div className='container-categories-meuOptions'>
+            <div className='container-back-page'>
                 <Link
                     style={{ textDecoration: 'none' }}
                     to='/'>

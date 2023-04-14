@@ -96,7 +96,7 @@ function PostAd() {
 
     return (
         <div className='container-postAd'>
-            <div className='container-categories-meuOptions'>
+            <div className='container-back-page'>
                 <Link
                     className='link'
                     to='/'>
