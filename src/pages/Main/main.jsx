@@ -10,6 +10,9 @@ import ForgotPassword from '../ForgotPassword/forgotPassword';
 import ProfessionalHomePage from '../ProfessionalHomePage/professionalHomePage';
 import PostAd from '../PostAd/postAd';
 import ProfessionalProfile from '../../pages/ProfessionalProfile/professionalProfile';
+import CreditsProfessional from '../CreditsProfessional/creditsProfessional';
+import TransactionHistory from '../TransactionHistory/transactionHistory';
+
 
 
 function ProtectedRoutes({ redirectTo }) {
@@ -50,6 +53,14 @@ function Main() {
 
           <Route path='/professional-home' element={<NavBarProfessional />}>
             <Route path='' element={<ProfessionalHomePage />} />
+          </Route>
+
+          <Route path='/credits-Professional' element={<NavBarProfessional />}>
+            <Route path='' element={<CreditsProfessional />} />
+          </Route>
+
+          <Route path='/transaction-history' element={<NavBarProfessional />}>
+            <Route path='' element={<TransactionHistory />} />
           </Route>
 
         </Route>

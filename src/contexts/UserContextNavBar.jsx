@@ -1,5 +1,21 @@
+// import { createContext } from 'react';
+// import useNavBarProvider from '../hooks/useNavBarProvider.jsx';
+
+// const UserContext = createContext({});
+
+// export function UserProviderNavBar(props) {
+//     const useNavBar = useNavBarProvider();
+//     return (
+//         <UserContext.Consumer>
+//             {value => <>{value && props.children}</>}
+//         </UserContext.Consumer>
+//     )
+// }
+// export default UserContext;
+
+
 import { createContext } from 'react';
-import useNavBarProvider from '../hooks/useNavBarProvider';
+import useNavBarProvider from '../hooks/useNavBarProvider.jsx';
 
 const UserContext = createContext({});
 
@@ -11,4 +27,13 @@ export function UserProviderNavBar(props) {
         </UserContext.Provider>
     )
 }
-export default UserContext;
+
+export const useNavBarContext = () => {
+    const context = useContext(UserContext);
+    if (!context) {
+        throw new Error(
+            'useNavBarContext must be used within a UserProviderNavBar'
+        );
+    }
+    return context;
+};

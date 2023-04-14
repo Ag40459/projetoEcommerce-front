@@ -1,4 +1,5 @@
 .container-sign-in {
+    position: relative;
     max-width: 100vw;
     height: calc(100vh - 8rem);
     display: flex;
@@ -87,4 +88,8 @@
 
 .container-sign-in footer {
     border-top: 1px solid lightgray;
+}
+
+.container-sign-in-messageAlert {
+    position: absolute;
 }
