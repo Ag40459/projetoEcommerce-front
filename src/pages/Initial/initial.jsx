@@ -14,8 +14,6 @@ function Initial() {
             </div>
             <div className='container-initial-cards'>
                 <CardCategory />
-                <CardCategory />
-                <CardCategory />
             </div>
             <div className='container-initial-information'>
                 <p>

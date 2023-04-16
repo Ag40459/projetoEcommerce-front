@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useLocalStorage } from "react-use";
 
-
 function useNavBarProvider() {
     const [openCloseModalMenu400, setOpenCloseModalMenu400] = useState(true);
     const [openClodesEyeConfirmed, setOpenClodesEyeConfirmed] = useState(true);

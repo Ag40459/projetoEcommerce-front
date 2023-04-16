@@ -1,6 +1,18 @@
 .container-cardCategory {
-    width: 30rem;
     height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    /* border: 2px solid red; */
+}
+
+.container-cardCategory-cards {
+    width: 30rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
     border: 0.1rem solid lightgrey;
 }
 

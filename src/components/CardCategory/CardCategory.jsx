@@ -1,34 +1,58 @@
 import { Link } from 'react-router-dom';
+import ImgNull from '../../assets/imagemConstrucao.jpg'
+import api from '../../services/api';
+import { useEffect, useState } from 'react';
+import useNavBarProvider from '../../hooks/useNavBarProvider';
 import './CardCategory.css';
 
 function CardCategory() {
+    const [categories, setCategories] = useState([]);
+    const { token } = useNavBarProvider();
+
+    useEffect(() => {
+        api.get('/categories', {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        })
+            .then(response => {
+                setCategories(response.data);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }, [token]);
+
     return (
         <div className='container-cardCategory'>
-
-            <Link
-                className='container-cardCategory-customization-Link'
-                to="/categories">
-                <img
-                    src="https://i.pinimg.com/originals/99/90/f3/9990f3ee805370095ac067bb6d3f68fe.jpg" alt="foto de uma mulher" />
-            </Link>
-            <Link
-                className='container-cardCategory-customization-Link'
-                to="/categories">
+            {categories.map(category => (
                 <div
-                    className='container-cardCategory-category'>
-                    <h2>
-                        Acompanhantes
-                    </h2>
+                    className='container-cardCategory-cards '
+                    key={category.id}
+                >
+                    <Link
+                        className='container-cardCategory-customization-Link'
+                        to={`/categories/${category.id}`}
+                    >
+                        <img
+                            src={!category.imageUrl ? ImgNull : category.imageUrl}
+                            alt={`imagem da categoria ${category.title}`}
+                        />
+                        <div className='container-cardCategory-category'>
+                            <h2>
+                                {category.title}
+                            </h2>
+                        </div>
+                        <div className='container-cardCategory-description'>
+                            <h3>
+                                {category.description}
+                            </h3>
+                        </div>
+                    </Link>
                 </div>
-            </Link>
-            <div
-                className='container-cardCategory-description'>
-                <h3>
-                    Encontre as melhores acompanhantes do Brasil, que te oferecem grande variedade de serviços eróticos. Não espere mais!
-                </h3>
-            </div>
+            ))}
         </div>
-    )
+    );
 }
 
 export default CardCategory;
