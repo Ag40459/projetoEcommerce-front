@@ -43,9 +43,15 @@
     border: 0.1rem solid #E8E8E8;
 }
 
-.container-sign-up-input-login img {
+#inputConfirmedPasswordProfessional {
     position: absolute;
     bottom: 1.1rem;
+    right: 1.5rem;
+}
+
+#inputPasswordProfessional {
+    position: absolute;
+    top: 8.6rem;
     right: 1.5rem;
 }
 

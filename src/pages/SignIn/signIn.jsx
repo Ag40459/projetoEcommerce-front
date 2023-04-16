@@ -6,26 +6,40 @@ import NoticeModal from '../../components/NoticeModal/noticeModal';
 import { useState } from 'react';
 import useNavBarProvider from '../../hooks/useNavBarProvider.jsx';
 import MessageAlert from '../../components/MessageAlert/messageAlert';
+import axios from 'axios';
 
 function SignIn() {
     const navigate = useNavigate();
-    const { openClodesEye, setOpenClodesEye } = useNavBarProvider();
+    const [openClodesEye, setOpenClodesEye] = useState(true);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showAlert, setShowAlert] = useState(false);
+    const { token, setToken, removeToken } = useNavBarProvider();
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        if (email && password) {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (!email || !password) {
             setShowAlert(true);
-            return navigate("/professional-home");
-        } else {
-            setShowAlert(false);
-            // Fazer a submissão do formulário
-            console.log(`E-mail: ${email}, Senha: ${password}`);
+            setTimeout(() => setShowAlert(false), 5000);
+            return;
+        }
+        try {
+            const response = await axios.post("/sign-in", {
+                email, password
+            });
+            console.log('response');
+            const { token: responseToken } = response.data;
+
+            setToken(responseToken);
+            navigate('/professional-home');
+            setShowSuccessAlert(true); // definir como true após um submit bem sucedido
+            setTimeout(() => setShowSuccessAlert(false), 5000); // definir como false após um intervalo de tempo
+        } catch (error) {
+            console.log(error);
+            // Tratar erro de autenticação
         }
     }
-    console.log(showAlert)
+
     return (
         <div className='container-sign-in'>
             <div className='container-back-page'>
@@ -82,7 +96,6 @@ function SignIn() {
                     className='container-sign-in-messageAlert'>
                     <MessageAlert message="Preencha todos os campos." />
                 </div>
-
             }
         </div>
     )
