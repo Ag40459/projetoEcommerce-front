@@ -14,7 +14,7 @@ function SignIn() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showAlert, setShowAlert] = useState(false);
-    const { token, setToken, removeToken } = useNavBarProvider();
+    const { token, setToken, removeToken, setUserLogged } = useNavBarProvider();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -27,13 +27,14 @@ function SignIn() {
             const response = await axios.post("/sign-in", {
                 email, password
             });
-            console.log('response');
             const { token: responseToken } = response.data;
 
             setToken(responseToken);
             navigate('/professional-home');
+            setUserLogged(response.data);
             setShowSuccessAlert(true); // definir como true após um submit bem sucedido
             setTimeout(() => setShowSuccessAlert(false), 5000); // definir como false após um intervalo de tempo
+
         } catch (error) {
             console.log(error);
             // Tratar erro de autenticação

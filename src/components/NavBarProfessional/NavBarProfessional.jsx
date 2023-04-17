@@ -3,6 +3,7 @@ import EyeOpen from "../../assets/profile.png";
 import Search from "../../assets/search.svg";
 import { Link, Outlet } from 'react-router-dom';
 import { useState } from 'react';
+import useNavBarProvider from '../../hooks/useNavBarProvider';
 
 let currentPath = window.location.pathname
 console.log(currentPath);
