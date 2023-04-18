@@ -1,7 +1,7 @@
 import './NavBarProfessional.css';
 import EyeOpen from "../../assets/profile.png";
 import Search from "../../assets/search.svg";
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import useNavBarProvider from '../../hooks/useNavBarProvider';
 
@@ -10,6 +10,15 @@ console.log(currentPath);
 function NavBarProfessional() {
     const [modalOpenCloseMenu, setModalOpenCloseMenu] = useState(false);
     const [modalOpenCloseSearch, setModalOpenCloseSearch] = useState(false);
+    const { removeUserLogedId } = useNavBarProvider();
+    const navigate = useNavigate();
+
+
+
+    const handleExit = async (e) => {
+        removeUserLogedId()
+        return navigate('/');
+    };
 
     return (
         <div className='container-NavBarProfessional'>
@@ -160,6 +169,7 @@ function NavBarProfessional() {
                             paddingTop: '1rem'
                         }}>
                         <Link
+                            onClick={handleExit}
                             className='customization-link-prof'
                             to='/'>
                             Encerrar sessão

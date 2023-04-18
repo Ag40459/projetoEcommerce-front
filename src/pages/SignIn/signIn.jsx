@@ -35,8 +35,10 @@ function SignIn() {
             setTimeout(() => setShowAlert(false), 5000);
             navigate('/professional-home');
         } catch (error) {
+            alert(error.response.data.message);
+
             console.log(error);
-            // Tratar erro de autenticação
+            // Tratar erro de autenticação,
         }
     }
 
