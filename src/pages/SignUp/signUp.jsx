@@ -7,10 +7,13 @@ import EyeOpen from "../../assets/Input_Password_Eye_Open.svg";
 import NotChecked from "../../assets/notChecked.svg";
 import useNavBarProvider from '../../hooks/useNavBarProvider';
 import hcaptcha from "../../assets/hcaptcha.svg";
+import { useState } from "react";
 
 
 function SignUp() {
-    const { openClodesEyeConfirmed, setOpenClodesEyeConfirmed, openClodesEye, setOpenClodesEye, emailProfessional, setEmailProfessional, passwordProfessional, setPasswordProfessional, confirmedPasswordProfessional, setConfirmedPasswordProfessional, error, setError, success, setSuccess } = useNavBarProvider();
+    const { openClodesEyeConfirmed, setOpenClodesEyeConfirmed, openClodesEye, setOpenClodesEye, emailProfessional, setEmailProfessional, passwordProfessional, setPasswordProfessional, confirmedPasswordProfessional, setConfirmedPasswordProfessional, setShowAlert, showAlert } = useNavBarProvider();
+    const [success, setSuccess] = useState();
+    const [error, setError] = useState();
 
     const checkPassword = {
         uppercase: false,
@@ -24,9 +27,9 @@ function SignUp() {
         e.preventDefault();
 
         if (!emailProfessional || !passwordProfessional || !confirmedPasswordProfessional) {
-            setError('Por favor, preencha todos os campos obrigatórios.');
+            setShowAlert('Por favor, preencha todos os campos obrigatórios.');
             setSuccess(null);
-            return alert(error)
+            return alert('Por favor, preencha todos os campos obrigatórios.')
         }
 
         if (passwordProfessional !== confirmedPasswordProfessional) {
@@ -48,7 +51,7 @@ function SignUp() {
                 passwordProfessional,
                 confirmedPasswordProfessional
             );
-            const response = await api.post('/users/signup', {
+            const response = await api.post('/users/sign-up', {
                 email: emailProfessional,
                 password: passwordProfessional,
                 confirm_password: confirmedPasswordProfessional

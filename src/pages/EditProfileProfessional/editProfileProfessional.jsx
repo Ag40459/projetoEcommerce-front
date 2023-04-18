@@ -71,9 +71,17 @@ function EditProfileProfessional() {
         phone = phone.replace(/(\d{5})(\d)/, '$1 $2'); // separação do número em blocos
         setFormData({ ...formData, [event.target.name]: event.target.value })
     }
+    console.log(formData.confirmPassword
+    );
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         setIsLoading(true);
+        if ((formData.password) != (formData.confirmPassword)) {
+            alert("Erro: As senhas digitadas não são iguais. Por favor, tente novamente.")
+            return
+        }
+
         try {
             const response = await api.patch(`/users/updateUser/${userUnifiedTable.user.id}`, formData, {
                 headers: {

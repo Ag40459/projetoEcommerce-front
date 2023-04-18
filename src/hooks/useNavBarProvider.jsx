@@ -16,24 +16,27 @@ function useNavBarProvider() {
     const [userLogedId, setUserLogedId, removeUserLogedId] = useLocalStorage('userID', '');
 
     useEffect(() => {
-        const fetchUnifiedData = async () => {
-            if (!userLogedId) {
-                return;
-            }
+        if (token) {
+            const fetchUnifiedData = async () => {
+                if (!userLogedId) {
+                    return;
+                }
 
-            try {
-                const response = await api.get(`/users/unified-tabled/${userLogedId}`, {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                });
-                setUserUnifiedTable(response.data);
-            } catch (error) {
-                console.error(error);
-            }
-        };
+                try {
+                    const response = await api.get(`/users/unified-tabled/${userLogedId}`, {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                    });
+                    setUserUnifiedTable(response.data);
+                } catch (error) {
+                    console.error(error);
+                }
+            };
+            fetchUnifiedData();
+        }
+        return
 
-        fetchUnifiedData();
     }, [userLogedId, token]);
 
 
@@ -49,6 +52,7 @@ function useNavBarProvider() {
         passwordProfessional,
         setPasswordProfessional,
         emailProfessional,
+        setEmailProfessional,
         token,
         setToken,
         removeToken, openClodesEye,

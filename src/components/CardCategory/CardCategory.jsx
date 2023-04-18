@@ -22,6 +22,7 @@ function CardCategory() {
                 console.error(error);
             });
     }, [token]);
+    console.log("aqui");
 
     return (
         <div className='container-cardCategory'>
