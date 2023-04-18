@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import api from '../services/api';
 import { useLocalStorage } from "react-use";
 
 function useNavBarProvider() {
@@ -9,30 +10,31 @@ function useNavBarProvider() {
     const [emailProfessional, setEmailProfessional] = useState('');
     const [passwordProfessional, setPasswordProfessional] = useState('');
     const [confirmedPasswordProfessional, setConfirmedPasswordProfessional] = useState('');
-    const [error, setError] = useState(null);
-    const [success, setSuccess] = useState(null);
+    const [showAlert, setShowAlert] = useState(false);
     const [token, setToken, removeToken] = useLocalStorage('token', '');
-    const [unifiedTable, setUnifiedTable] = useState(null);
-    const [userLogged, setUserLogged] = useState(null);
+    const [userUnifiedTable, setUserUnifiedTable] = useState(null);
+    const [userLogedId, setUserLogedId, removeUserLogedId] = useLocalStorage('userID', '');
 
     useEffect(() => {
-        const fetchUnifiedData = async (res, req) => {
+        const fetchUnifiedData = async () => {
+            if (!userLogedId) {
+                return;
+            }
+
             try {
-                const response = await api.get(`/users/${id}/unified`, {
+                const response = await api.get(`/users/unified-tabled/${userLogedId}`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
                 });
-                setUnifiedTable(response.data);
+                setUserUnifiedTable(response.data);
             } catch (error) {
                 console.error(error);
             }
         };
 
         fetchUnifiedData();
-    }, [id, token]);
-
-
+    }, [userLogedId, token]);
 
 
     return {
@@ -47,19 +49,17 @@ function useNavBarProvider() {
         passwordProfessional,
         setPasswordProfessional,
         emailProfessional,
-        setEmailProfessional,
-        error,
-        setError,
-        success,
-        setSuccess,
         token,
         setToken,
         removeToken, openClodesEye,
         setOpenClodesEye,
-        unifiedTable,
-        setUnifiedTable,
-        userLogged,
-        setUserLogged
+        userUnifiedTable,
+        setUserUnifiedTable,
+        showAlert,
+        setShowAlert,
+        userLogedId,
+        setUserLogedId,
+        removeUserLogedId
     }
 }
 

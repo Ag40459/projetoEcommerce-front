@@ -2,11 +2,10 @@ import './signIn.css';
 import { Link, useNavigate } from 'react-router-dom';
 import EyeClose from "../../assets/Input_Password_Eye_Close.svg";
 import EyeOpen from "../../assets/Input_Password_Eye_Open.svg";
-import NoticeModal from '../../components/NoticeModal/noticeModal';
 import { useState } from 'react';
 import useNavBarProvider from '../../hooks/useNavBarProvider.jsx';
 import MessageAlert from '../../components/MessageAlert/messageAlert';
-import axios from 'axios';
+import api from '../../services/api';
 
 function SignIn() {
     const navigate = useNavigate();
@@ -14,7 +13,7 @@ function SignIn() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showAlert, setShowAlert] = useState(false);
-    const { token, setToken, removeToken, setUserLogged } = useNavBarProvider();
+    const { setToken, setUserLogedId } = useNavBarProvider();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -24,17 +23,17 @@ function SignIn() {
             return;
         }
         try {
-            const response = await axios.post("/sign-in", {
+            const response = await api.post("/users/sign-in", {
                 email, password
             });
             const { token: responseToken } = response.data;
+            const { userID: responseUserID } = response.data;
+
 
             setToken(responseToken);
+            setUserLogedId(responseUserID);
+            setTimeout(() => setShowAlert(false), 5000);
             navigate('/professional-home');
-            setUserLogged(response.data);
-            setShowSuccessAlert(true); // definir como true após um submit bem sucedido
-            setTimeout(() => setShowSuccessAlert(false), 5000); // definir como false após um intervalo de tempo
-
         } catch (error) {
             console.log(error);
             // Tratar erro de autenticação
@@ -77,7 +76,10 @@ function SignIn() {
                 </div>
 
                 <div className='container-sign-in-submit'>
-                    <button type="submit">Entrar</button>
+                    <button
+                        type="submit"
+                    >Entrar
+                    </button>
                 </div>
             </form>
 

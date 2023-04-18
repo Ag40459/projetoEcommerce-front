@@ -2,20 +2,25 @@ import './professionalHomePage.css';
 import AnnouncementIcon from '../../assets/announcementIcon.svg';
 import EditProfileIcon from '../../assets/editProfileIcon.svg';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import useNavBarProvider from '../../hooks/useNavBarProvider';
 
 function ProfessionalHomePage() {
+    const { userUnifiedTable } = useNavBarProvider();
 
-    const [arrayCredit, setArrayCredit] = useState([{ currentCredit: 0 }, { usedCredit: 0 }]);
-    // const [arrayCredi, setArrayCredit] = useState([{ currentCredit: 0 }, { usedCredit: 0 }]);
-    // const [arrayCredit, setArrayCredit] = useState([{ currentCredit: 0 }, { usedCredit: 0 }]);
+    if (!userUnifiedTable) {
+        return null;
+    }
 
     return (
         <div className='container-professional-homePage'>
 
             <div className='container-professional-homePage-welcome'>
-                <h2>Bem-Vindo</h2>
-                <h4>email do usuário</h4>
+                <h2>
+                    Olá,
+                </h2>
+                <h4>
+                    {userUnifiedTable.user.email}
+                </h4>
             </div>
 
             <div className='container-professional-homePage-options'>
@@ -107,7 +112,7 @@ function ProfessionalHomePage() {
                                 Créditos atuais
                             </p>
                             <span>
-                                {arrayCredit[0].currentCredit}
+                                {Number(userUnifiedTable.account.balance)}
                             </span>
                         </div>
                         <div className='container-card-professional-homePage-options-credit-detail-pSpan'>
@@ -116,7 +121,7 @@ function ProfessionalHomePage() {
                                 Créditos usados
                             </p>
                             <span>
-                                {arrayCredit[1].usedCredit}
+                                {0}
                             </span>
                         </div>
 

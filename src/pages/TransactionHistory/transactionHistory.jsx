@@ -1,10 +1,15 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import useNavBarProvider from '../../hooks/useNavBarProvider';
 import './transactionHistory.css';
 
 function TransactionHistory() {
-    const [historyTransaction, setHistoryTransaction] = useState(false);
+    const [historyTransaction, setHistoryTransaction] = useState(true);
+    const { userUnifiedTable } = useNavBarProvider();
 
+    if (!userUnifiedTable) {
+        return null;
+    }
 
     return (
         <div className='container-transactionHistory'>

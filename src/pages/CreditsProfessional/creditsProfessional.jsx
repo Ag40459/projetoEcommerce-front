@@ -1,11 +1,15 @@
 import { Link } from 'react-router-dom';
+import useNavBarProvider from '../../hooks/useNavBarProvider';
 import './creditsProfessional.css';
 
 function CreditsProfessional() {
     let chekBox = true;
     let value = 100;
+    const { userUnifiedTable } = useNavBarProvider();
 
-
+    if (!userUnifiedTable) {
+        return null;
+    }
     return (
         <div className='container-creditsProfessional'>
             <div className='container-back-page'>
@@ -18,7 +22,7 @@ function CreditsProfessional() {
             <div className='container-creditsProfessional-summary-title'>
                 <h4>Os seus créditos no Listta Vip</h4>
                 <div className='container-creditsProfessional-summary-balance'>
-                    <h6>CRÉDITOS ATUAIS: {0}</h6>
+                    <h6>CRÉDITOS ATUAIS: {((Number(userUnifiedTable.account.balance)).toFixed(2)).replace(".", ",")}</h6>
                     <h6>CRÉDITOS USADOS: {0}</h6>
                 </div>
                 <Link
