@@ -2,27 +2,29 @@ import { Link } from 'react-router-dom';
 import ImgNull from '../../assets/imagemConstrucao.jpg'
 import api from '../../services/api';
 import { useEffect, useState } from 'react';
-import useNavBarProvider from '../../hooks/useNavBarProvider';
 import './CardCategory.css';
 
-function CardCategory() {
+function CardCategory({ setIdCategory, idCategory }) {
     const [categories, setCategories] = useState([]);
-    const { token } = useNavBarProvider();
 
     useEffect(() => {
-        api.get('/categories', {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        })
+        console.log("idCategory :" + idCategory);
+
+
+        api.get('/categories')
             .then(response => {
                 setCategories(response.data);
             })
             .catch(error => {
                 console.error(error);
             });
-    }, [token]);
-    console.log("aqui");
+    }, []);
+
+    const handleSelectIdCategory = (event) => {
+        setIdCategory(event);
+        console.log("idCategory :" + event);
+
+    };
 
     return (
         <div className='container-cardCategory'>
@@ -33,7 +35,8 @@ function CardCategory() {
                 >
                     <Link
                         className='container-cardCategory-customization-Link'
-                        to={`/categories/${category.id}`}
+                        onClick={() => handleSelectIdCategory(category.id)}
+                        to={''}
                     >
                         <img
                             src={!category.imageUrl ? ImgNull : category.imageUrl}

@@ -8,32 +8,6 @@ function NavBarInitial() {
     const [modalOpenCloseMenu, setModalOpenCloseMenu] = useState(false);
     const [modalOpenCloseSearch, setModalOpenCloseSearch] = useState(false);
 
-    useEffect(() => {
-        function handleResize() {
-            // verifique se a largura da janela é menor ou igual a 650 pixels (ou outro valor que você esteja usando para o breakpoint)
-            if (window.innerWidth <= 650) {
-                // se sim, mantenha o estado atual da segunda div
-                setModalOpenCloseSearch(modalOpenCloseSearch);
-                setModalOpenCloseMenu(modalOpenCloseMenu)
-            } else {
-                // se não, redefina o estado da segunda div para false
-                setModalOpenCloseSearch(false);
-                setModalOpenCloseMenu(false)
-            }
-        }
-
-        // execute a função de tratamento de redimensionamento uma vez quando o componente for montado
-        handleResize();
-
-        // execute a função de tratamento de redimensionamento sempre que a largura da janela for alterada
-        window.addEventListener('resize', handleResize);
-        console.log(window.innerWidth);
-        // limpe o ouvinte de redimensionamento quando o componente for desmontado
-        return () => window.removeEventListener('resize', handleResize);
-
-
-    }, [modalOpenCloseSearch]);
-
 
     return (
         <div
@@ -74,8 +48,7 @@ function NavBarInitial() {
 
                     </div>
                 </div>
-                <div
-                    className='container-NavBarInitial-search'>
+                <div className='container-NavBarInitial-search'>
 
                     <select
                         name=""

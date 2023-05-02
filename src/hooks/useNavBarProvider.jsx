@@ -13,6 +13,8 @@ function useNavBarProvider() {
     const [showAlert, setShowAlert] = useState(false);
     const [token, setToken, removeToken] = useLocalStorage('token', '');
     const [userUnifiedTable, setUserUnifiedTable] = useState(null);
+    const [listCategoryId, setListCategoryId] = useState('');
+    const [idCategory, setIdCategory] = useState('');
     const [userLogedId, setUserLogedId, removeUserLogedId] = useLocalStorage('userID', '');
 
     useEffect(() => {
@@ -37,7 +39,33 @@ function useNavBarProvider() {
         }
         return
 
-    }, [userLogedId, token]);
+    }, [userLogedId, token, listCategoryId]);
+
+    // useEffect(() => {
+    //     if (idCategory) {
+    //         console.log("idCategory: " + idCategory);
+
+    //         const fetchUnifiedData = async () => {
+
+    //             try {
+    //                 const response = await api.get(`/users/category/${idCategory}`, {
+    //                     headers: {
+    //                         Authorization: `Bearer ${token}`,
+    //                     },
+    //                 });
+    //                 console.log(response.data.users);
+    //                 setListCategoryId(response.data.users);
+    //                 return console.log("listCategoryId :" + listCategoryId);
+    //             } catch (error) {
+    //                 console.error(error);
+    //             }
+    //         };
+    //         fetchUnifiedData();
+
+    //     }
+
+
+    // }, [idCategory]);
 
 
     return {
@@ -63,7 +91,11 @@ function useNavBarProvider() {
         setShowAlert,
         userLogedId,
         setUserLogedId,
-        removeUserLogedId
+        removeUserLogedId,
+        listCategoryId,
+        setListCategoryId,
+        idCategory,
+        setIdCategory
     }
 }
 

@@ -244,12 +244,6 @@ li {
         min-height: 8rem;
     }
 
-    .container-NavBarInitial-search-media650 {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
     .customization-option-search-media650 {
         display: flex;
         width: 97%;
@@ -262,6 +256,12 @@ li {
         border-radius: 8px;
         border: none;
         font-size: large;
+    }
+
+    .container-NavBarInitial-search-media650 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .container-NavBarInitial-search-media650 button {

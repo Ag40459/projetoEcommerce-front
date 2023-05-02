@@ -1,9 +1,30 @@
 import './categories.css';
 import { Link } from 'react-router-dom';
-import CardProfile from '../../components/CardProfile/cardProfile'
+import CardProfile from '../../components/CardProfile/cardProfile';
+import { useEffect } from 'react';
 
 
-function categories() {
+function categories({ idCategory }) {
+
+    console.log(idCategory);
+    // useEffect(() => {
+    //     console.log("antes");
+    //     if (idCategory) {
+    //         console.log("depois");
+
+    //         const fetchUnifiedData = async () => {
+    //             try {
+    //                 const response = await api.get(`/users/category/${idCategory}`);
+    //                 console.log(response.data.users);
+    //                 setListCategoryId(response.data.users);
+    //                 console.log(listCategoryId);
+    //             } catch (error) {
+    //                 console.error(error);
+    //             }
+    //         };
+    //         fetchUnifiedData();
+    //     }
+    // }, [idCategory]);
     return (
         <div className='container-categories'>
             <div className='container-back-page'>
@@ -15,17 +36,6 @@ function categories() {
                 </Link>
             </div>
             <CardProfile />
-            <CardProfile />
-            <CardProfile />
-            <CardProfile />
-            <CardProfile />
-            <CardProfile />
-            <CardProfile />
-            <CardProfile />
-            <CardProfile />
-            <CardProfile />
-            <CardProfile />
-            <CardProfile />;
 
             <footer>
                 <a href="">Termos e Condições</a>

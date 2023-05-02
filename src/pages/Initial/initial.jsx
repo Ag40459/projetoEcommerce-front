@@ -1,7 +1,7 @@
 import CardCategory from '../../components/CardCategory/CardCategory';
 import './initial.css';
 
-function Initial() {
+function Initial({ setIdCategory }) {
     return (
         <div className='container-initial'>
             <div className='container-initial-title'>
@@ -13,7 +13,9 @@ function Initial() {
                 </h3>
             </div>
             <div className='container-initial-cards'>
-                <CardCategory />
+                <CardCategory
+                    setIdCategory={setIdCategory}
+                />
             </div>
             <div className='container-initial-information'>
                 <p>

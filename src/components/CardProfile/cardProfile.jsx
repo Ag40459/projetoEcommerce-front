@@ -2,9 +2,15 @@ import { Link } from 'react-router-dom';
 import './cardProfile.css';
 import Checked from "../../assets/checked.svg";
 import NotChecked from "../../assets/notChecked.svg";
+import useNavBarProvider from '../../hooks/useNavBarProvider';
 
 const checked = true;
 function CardProfile() {
+
+    const { listCategoryId, idCategory } = useNavBarProvider();
+
+    console.log("idCategory :" + idCategory);
+
     return (
         <div className='container-cardProfile'>
             {checked

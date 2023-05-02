@@ -99,6 +99,7 @@ function SignUp() {
                         onChange={(e) => setPasswordProfessional(e.target.value)}
                         value={passwordProfessional}
                         placeholder='Senha'
+                        autocomplete='new-password'
                     />
                     <img
                         id='inputPasswordProfessional'
@@ -111,7 +112,10 @@ function SignUp() {
                         value={confirmedPasswordProfessional}
                         onChange={(e) => setConfirmedPasswordProfessional(e.target.value)}
                         type={openClodesEyeConfirmed ? 'password' : 'text'}
-                        placeholder='Confirmar Senha' />
+                        placeholder='Confirmar Senha'
+                        autocomplete='new-password'
+                    />
+
                     <img
                         id='inputConfirmedPasswordProfessional'
                         className='openCloseEye'
