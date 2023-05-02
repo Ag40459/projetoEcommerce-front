@@ -131,20 +131,19 @@ function SignUp() {
                     <div className='container-sign-up-rules-password'>
                         <div style={{ display: 'flex', gap: '1rem' }}>
                             <img
-                                src={checkPassword.uppercase ? Checked : NotChecked}
+                                src={/(?=.*[A-Z])/.test(passwordProfessional) ? Checked : NotChecked}
                                 alt="checked/ Notchecked" /> <p>Uma letra maiúscula</p>
                         </div>
                         <div style={{ display: 'flex', gap: '1rem' }}>
                             <img
-                                src={checkPassword.uppercase ? Checked : NotChecked}
+                                src={/(?=.*[a-z])/.test(passwordProfessional) ? Checked : NotChecked}
                                 alt="checked/ Notchecked" /> <p>Uma letra minúscula</p>
                         </div>
                         <div style={{ display: 'flex', gap: '1rem' }}>
                             <img
-                                src={checkPassword.uppercase ? Checked : NotChecked}
+                                src={/(?=.{6,})/.test(passwordProfessional) ? Checked : NotChecked}
                                 alt="checked/ Notchecked" /> <p>Mínimo de 6 caracteres</p>
                         </div>
-
                     </div>
                 </div>
                 <div className='container-sign-up-terms-and-conditions'>
