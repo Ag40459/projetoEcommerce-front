@@ -2,25 +2,22 @@ import './signIn.css';
 import { Link, useNavigate } from 'react-router-dom';
 import EyeClose from "../../assets/Input_Password_Eye_Close.svg";
 import EyeOpen from "../../assets/Input_Password_Eye_Open.svg";
-import { useState } from 'react';
-import useNavBarProvider from '../../hooks/useNavBarProvider.jsx';
-import MessageAlert from '../../components/MessageAlert/messageAlert';
+import React, { useContext, useState } from "react";
 import api from '../../services/api';
+import { GlobalContext } from '../../contexts/GlobalContext';
 
 function SignIn() {
     const navigate = useNavigate();
+    const { setToken, setUserLogedId } = useContext(GlobalContext);
     const [openClodesEye, setOpenClodesEye] = useState(true);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [showAlert, setShowAlert] = useState(false);
-    const { setToken, setUserLogedId } = useNavBarProvider();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!email || !password) {
-            setShowAlert(true);
-            setTimeout(() => setShowAlert(false), 5000);
-            return;
+            // setTimeout(() => setShowAlert(false), 5000);
+            return alert("E-mail ou Senha incorreto")
         }
         try {
             const response = await api.post("/users/sign-in", {
@@ -32,21 +29,18 @@ function SignIn() {
 
             setToken(responseToken);
             setUserLogedId(responseUserID);
-            setTimeout(() => setShowAlert(false), 5000);
             navigate('/professional-home');
         } catch (error) {
-            alert(error.response.data.message);
-
             console.log(error);
-            // Tratar erro de autenticação,
+            // alert(error.response.data.message);
         }
     }
 
     return (
         <div className='container-sign-in'>
             <div className='container-back-page'>
-                <Link className='link' to='/'>
-                    Voltar para Home
+                <Link className='link' to='#' onClick={() => window.history.back()}>
+                    Página Anterior
                 </Link>
             </div>
             <div className='container-sign-in-welcome'>
@@ -96,12 +90,12 @@ function SignIn() {
                 <a href="">Fale Conosco</a>
                 <a id='end' href="">Promover seus Anúncios</a>
             </footer>
-            {showAlert &&
+            {/* {showAlert &&
                 <div
                     className='container-sign-in-messageAlert'>
                     <MessageAlert message="Preencha todos os campos." />
                 </div>
-            }
+            } */}
         </div>
     )
 }

@@ -1,12 +1,10 @@
 .container-categories {
     display: flex;
     flex-direction: column;
-    margin-top: 1rem;
     min-height: calc(100vh - 6rem);
     width: 100%;
     align-items: center;
-    justify-content: center;
-    gap: 1rem;
+    /* justify-content: space-between; */
 }
 
 .container-categories-container-back-page {
@@ -21,4 +19,9 @@
 
 .container-categories-container-back-page:hover {
     color: blue;
+}
+
+.container-categories-cardProfile {
+    min-height: calc(100vh - 24rem);
+
 }

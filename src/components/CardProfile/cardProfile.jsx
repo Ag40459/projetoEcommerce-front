@@ -1,45 +1,78 @@
+import api from '../../services/api';
 import { Link } from 'react-router-dom';
 import './cardProfile.css';
-import Checked from "../../assets/checked.svg";
-import NotChecked from "../../assets/notChecked.svg";
-import useNavBarProvider from '../../hooks/useNavBarProvider';
+import React, { useContext, useEffect } from "react";
+import { GlobalContext } from '../../contexts/GlobalContext';
+import { differenceInYears } from 'date-fns';
 
-const checked = true;
 function CardProfile() {
+    const { idCategory, setListCategoryId, listCategoryId, categories, setIdUserCategory, removeIdUserCategory } = useContext(GlobalContext);
 
-    const { listCategoryId, idCategory } = useNavBarProvider();
-
-    console.log("idCategory :" + idCategory);
+    useEffect(() => {
+        removeIdUserCategory()
+        if (idCategory) {
+            const fetchUnifiedData = async () => {
+                try {
+                    const response = await api.get(`/users/category/${idCategory}`);
+                    setListCategoryId(response.data.users);
+                } catch (error) {
+                    console.error(error);
+                }
+            };
+            fetchUnifiedData();
+        }
+    }, [idCategory]);
 
     return (
         <div className='container-cardProfile'>
-            {checked
-                ?
-                <div className='imgChecked'>
-                    <img
-                        style={{ width: '2.5rem' }}
-                        src={Checked}
-                        alt="checked incone" />
-                </div>
-                :
-                <div id='imgNotChecked'>
-                    <img src={NotChecked} alt="NotChecked incone" />
-                </div>
+
+            {listCategoryId
+                &&
+                listCategoryId.map(user => (
+
+                    <div className='container-cardProfile-listCategoryId'
+                        key={user.id}
+                    >
+                        <img
+                            src={user.image_url}
+                            alt="foto fornecido pelo usuário"
+                            onError={(e) => {
+                                e.target.onerror = null;
+                                e.target.src = "https://media.istockphoto.com/id/1227139973/pt/vetorial/38-percent-diagrams.jpg?s=612x612&w=0&k=20&c=bTXOcBZQnkOGbkMc1g8DkbFalwiYokuLeFUtazciA9g=";
+                            }}
+                        />
+
+                        <Link
+                            className='link'
+                            to='/page-card'
+                            onClick={() => setIdUserCategory(user.id)}
+                        >
+                            <div className='container-cardProfile-description'>
+                                <h1>
+                                    {user.title}
+                                </h1>
+                                <h3
+                                    id='teste' >
+                                    {user.description}
+                                </h3>
+                                <div className='container-cardProfile-description-detail'>
+                                    <p>
+                                        {differenceInYears(new Date(), new Date(user.birthdate))} anos
+                                    </p>
+                                    <p>
+                                        {categories.find(category => category.id === user.category_id)?.title}
+                                    </p>
+                                    <p id='container-cardProfile-description-detail-p'>
+                                        {user.city}
+                                    </p>
+                                </div>
+
+                            </div>
+                        </Link>
+                    </div>
+                ))
             }
 
-            <img src="https://static.vecteezy.com/ti/vetor-gratis/p3/17450174-o-logotipo-dos-bonecos-de-neve-para-uma-empresa-de-sorvetes-e-um-design-divertido-e-caprichoso-que-captura-a-essencia-do-inverno-e-a-alegria-de-saborear-uma-deliciosa-bola-de-sorvete-gratis-vetor.jpg" alt="foto fornecido pelo usuário" />
-            <Link to='/page-card'>
-                <div className='container-cardProfile-description'>
-                    <h1>Título feito pelo usuário</h1>
-                    <h3 id='teste' >Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam labore minus natus ab quia consequuntur inventore! Facilis aut eveniet ex minima blanditiis quos repellat, ea excepturi perspiciatis consequatur esse fuga.</h3>
-                    <div className='container-cardProfile-description-detail'>
-                        <p>Idade</p>
-                        <p>Categoria</p>
-                        <p id='container-cardProfile-description-detail-p'>Cidade</p>
-                    </div>
-
-                </div>
-            </Link>
         </div>
     )
 }

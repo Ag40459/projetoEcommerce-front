@@ -9,8 +9,8 @@ function YourAdsProfessional() {
     return (
         <div className='container-yourAdsProfessional'>
             <div className='container-back-page'>
-                <Link className='link' to='/professional-home'>
-                    Voltar
+                <Link className='link' to='#' onClick={() => window.history.back()}>
+                    Página Anterior
                 </Link>
             </div>
             <div className='container-yourAdsProfessional-panel'>

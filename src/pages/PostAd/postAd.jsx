@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Switch from '@mui/material/Switch';
 import IconButton from '@mui/material/IconButton';
-import PhotoCamera from '@mui/icons-material/PhotoCamera';
+// import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import { Link } from 'react-router-dom';
 import GreenLateralBar from "../../assets/Green_Horizontal_Progress_Bar.svg";
 import GreyLateralBar from "../../assets/Grey_Horizontal_Progress_Bar.svg";
@@ -10,30 +10,6 @@ import EmailIcon from "../../assets/email.svg";
 import WhatsappIcon from "../../assets/whatsappIcon.svg";
 import './postAd.css';
 
-
-function searchCep(cep) {
-    const cepConverted = cep.replace(" ", "");
-    if (cepConverted.length !== 8)
-        return setErrorMessageCep("Esse CEP não existe. Digite um CEP válido.");
-    fetch(`https:viacep.com.br/ws/${form.cep}/json/`)
-        .then((response) => response.json())
-        .then((data) => {
-            if (data.erro) {
-                return setErrorMessageCep(
-                    "Esse CEP não existe. Digite um CEP válido."
-                );
-            } else {
-                const apiData = {
-                    city: data.localidade,
-                    address: data.logradouro,
-                    uf: data.uf,
-                    neighborhood: data.bairro,
-                };
-                const newForm = { ...form, ...apiData };
-                setForm(newForm);
-            }
-        });
-}
 
 function PostAd() {
     const [text, setText] = useState('Seu Anúncio');
@@ -97,10 +73,8 @@ function PostAd() {
     return (
         <div className='container-postAd'>
             <div className='container-back-page'>
-                <Link
-                    className='link'
-                    to='/'>
-                    Voltar para Home
+                <Link className='link' to='#' onClick={() => window.history.back()}>
+                    Página Anterior
                 </Link>
             </div>
 
@@ -356,7 +330,7 @@ function PostAd() {
                             Arraste para aqui até 10 fotos.
                             <IconButton color="primary" aria-label="upload picture" component="label">
                                 <input hidden accept="image/*" type="file" />
-                                <PhotoCamera />
+                                {/* <PhotoCamera /> */}
                             </IconButton>
                         </div>
                     </div>

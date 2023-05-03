@@ -5,11 +5,8 @@ function ForgotPassword() {
     return (
         <div className='container-forgot-password'>
             <div className='container-back-page'>
-                <Link
-                    style={{ textDecoration: 'none' }}
-                    to='/'>
-
-                    Voltar para Home
+                <Link className='link' to='#' onClick={() => window.history.back()}>
+                    Página Anterior
                 </Link>
             </div>
             <div className='container-forgot-password-information'>

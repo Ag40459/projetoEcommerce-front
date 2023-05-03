@@ -1,9 +1,38 @@
-import { Link } from 'react-router-dom';
-import './professionalProfile.css';
+import api from '../../services/api';
 import ImgTeste from '../../assets/fotoTeste.jpg'
 import IconLeft from '../../assets/arrow-left.svg'
+import { Link } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from "react";
+import { GlobalContext } from '../../contexts/GlobalContext';
+import dayjs from 'dayjs';
+import 'dayjs/locale/pt-br';
+import './professionalProfile.css';
 
 function ProfessionalProfile() {
+    const { idUserCategory, categories } = useContext(GlobalContext);
+    const [user, setUser] = useState("");
+    const [currentDate, setCurrentDate] = useState("");
+    useEffect(() => {
+        console.log(user);
+        if (idUserCategory) {
+            const fetchUnifiedData = async () => {
+                try {
+                    const response = await api.get(`/users/unified-tabled/${idUserCategory}`);
+                    setUser(response.data.user);
+                } catch (error) {
+                    console.error(error);
+                }
+            };
+            fetchUnifiedData();
+        }
+        setCurrentDate(dayjs().locale('pt-br').format('DD/MM/YYYY'));
+    }, [idUserCategory]);
+
+    const getCategoryTitle = (categoryId) => {
+        const category = categories.find(cat => cat.id === categoryId);
+        return category ? category.title : '';
+    }
+
     return (
         <div className='container-professionalProfile'>
             <div className='container-professionalProfile-back'>
@@ -19,31 +48,29 @@ function ProfessionalProfile() {
                     <div className='container-professionalProfile-description-information'>
                         <div
                             style={{ display: 'flex', gap: '2rem' }}>
-                            <p>Data</p>
-                            <p>Plus</p>
+                            <p>{currentDate} </p>
                         </div>
                         <div style={{ display: 'flex', gap: '2rem' }}>
-                            <p>22</p>
-                            <p>Acompanhante</p>
-                            <p>Recife</p>
+                            <p>{user.birthdate ? `${dayjs().diff(dayjs(user.birthdate), 'year')} anos` : ''}</p>
+                            <p>{getCategoryTitle(user.category_id)}</p>
+                            <p>{user.city}</p>
                         </div>
                     </div>
                     <div className='container-professionalProfile-description-information-titleDescription'>
-                        <h1>Nome do Profissional</h1>
-                        <p>Descrição feito pelo usuário Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio totam alias laboriosam iure eligendi magni iste perferendis. Sapiente quis, recusandae nemo atque, natus molestias, ea modi ad quia voluptate veniam!</p>
+                        <h1>{user.name}</h1>
+                        <p>
+                            {user.description}
+                        </p>
                     </div>
 
-                    <div
-                        className='container-professionalProfile-image'>
-                        <img
-                            src={ImgTeste}
-                            alt="mulher sorrindo" />
-                        <img src={ImgTeste}
-                            alt="mulher sorrindo" />
-                        <img src={ImgTeste}
-                            alt="mulher sorrindo" />
-                        <img src={ImgTeste}
-                            alt="mulher sorrindo" />
+                    <div className='container-professionalProfile-image'>
+                        {user.image_url && user.image_url.split(',').map((imageUrl, index) => (
+                            <img
+                                key={index}
+                                src={imageUrl}
+                                alt={`Imagem ${index + 1}`}
+                            />
+                        ))}
                     </div>
                 </div>
             </div>

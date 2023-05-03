@@ -1,20 +1,31 @@
 import { Link } from 'react-router-dom';
-import useNavBarProvider from '../../hooks/useNavBarProvider';
+import React, { useContext, useEffect } from "react";
+import { GlobalContext } from '../../contexts/GlobalContext';
 import './creditsProfessional.css';
 
 function CreditsProfessional() {
     let chekBox = true;
     let value = 100;
-    const { userUnifiedTable } = useNavBarProvider();
+    const { userUnifiedTable } = useContext(GlobalContext);
 
     if (!userUnifiedTable) {
         return null;
     }
+
+    const creditosUsados = userUnifiedTable.account.transfer_history
+        ? userUnifiedTable.account.transfer_history
+            .filter((transacao) => transacao.type === 'withdraw')
+            .reduce((total, transacao) => total + parseFloat(transacao.amount), 0)
+        : 0;
+
+    const saldoAtual = parseFloat(userUnifiedTable.account.balance);
+    const saldoAnterior = saldoAtual + creditosUsados;
+
     return (
         <div className='container-creditsProfessional'>
             <div className='container-back-page'>
-                <Link className='link' to='/professional-home'>
-                    Voltar
+                <Link className='link' to='#' onClick={() => window.history.back()}>
+                    Página Anterior
                 </Link>
             </div>
             <h1>Comprar Créditos</h1>
@@ -22,8 +33,9 @@ function CreditsProfessional() {
             <div className='container-creditsProfessional-summary-title'>
                 <h4>Os seus créditos no Listta Vip</h4>
                 <div className='container-creditsProfessional-summary-balance'>
-                    <h6>CRÉDITOS ATUAIS: {((Number(userUnifiedTable.account.balance)).toFixed(2)).replace(".", ",")}</h6>
-                    <h6>CRÉDITOS USADOS: {0}</h6>
+                    <h6>CRÉDITOS ATUAIS: {saldoAtual.toFixed(2).replace(".", ",")}</h6>
+                    <h6>CRÉDITOS USADOS: {creditosUsados.toFixed(2).replace(".", ",")}</h6>
+                    <h6>SALDO ANTERIOR: {saldoAnterior.toFixed(2).replace(".", ",")}</h6>
                 </div>
                 <Link
                     style={{ color: 'red' }}
@@ -68,11 +80,10 @@ function CreditsProfessional() {
                         <p>TOTAL:</p>
                         <p style={{ fontWeight: 'bold', color: 'blue' }}>R$ {(value).toFixed(2)}</p>
 
+                        <button>PAGAR AGORA</button>
                     </div>
-                    <button>PAGAR AGORA</button>
+
                 </div>
-
-
             </div>
 
 

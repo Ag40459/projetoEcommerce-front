@@ -1,16 +1,19 @@
+import './index.css';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './pages/routes/routes';
-import './index.css';
+import App from './router';
 import { BrowserRouter } from 'react-router-dom';
-import { UserProviderNavBar } from './contexts/UserContextNavBar';
+import { GlobalContextProvider } from '../src/hooks/globalContextProvider';
+import Navbar from './components/NavBar/navBar';
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <UserProviderNavBar>
+    <GlobalContextProvider>
+      <BrowserRouter>
+        <Navbar />
         <App />
-      </UserProviderNavBar>
-    </BrowserRouter>
+      </BrowserRouter>
+    </GlobalContextProvider>
   </React.StrictMode>
 )

@@ -1,19 +1,24 @@
 import { Link } from 'react-router-dom';
 import ImgNull from '../../assets/imagemConstrucao.jpg'
 import api from '../../services/api';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import './CardCategory.css';
+import React, { useContext } from "react";
+import { GlobalContext } from '../../contexts/GlobalContext';
 
-function CardCategory({ setIdCategory, idCategory }) {
-    const [categories, setCategories] = useState([]);
+
+export function CardCategory() {
+
+    const { setIdCategory, categories, setCategories, removeIdCategory } = useContext(GlobalContext);
+
 
     useEffect(() => {
-        console.log("idCategory :" + idCategory);
-
+        removeIdCategory();
 
         api.get('/categories')
             .then(response => {
                 setCategories(response.data);
+
             })
             .catch(error => {
                 console.error(error);
@@ -21,8 +26,7 @@ function CardCategory({ setIdCategory, idCategory }) {
     }, []);
 
     const handleSelectIdCategory = (event) => {
-        setIdCategory(event);
-        console.log("idCategory :" + event);
+        return setIdCategory(event);
 
     };
 
@@ -36,7 +40,7 @@ function CardCategory({ setIdCategory, idCategory }) {
                     <Link
                         className='container-cardCategory-customization-Link'
                         onClick={() => handleSelectIdCategory(category.id)}
-                        to={''}
+                        to={'/categories'}
                     >
                         <img
                             src={!category.imageUrl ? ImgNull : category.imageUrl}
@@ -59,4 +63,4 @@ function CardCategory({ setIdCategory, idCategory }) {
     );
 }
 
-export default CardCategory;
+// export default CardCategory;

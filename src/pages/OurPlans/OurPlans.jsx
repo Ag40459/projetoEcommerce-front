@@ -5,8 +5,8 @@ function OurPlans() {
     return (
         <div className='container-ourPlans'>
             <div className='container-back-page'>
-                <Link className='link' to='/professional-home'>
-                    Voltar
+                <Link className='link' to='#' onClick={() => window.history.back()}>
+                    Página Anterior
                 </Link>
             </div>
             <h1>Conheça Nossos Planos</h1>

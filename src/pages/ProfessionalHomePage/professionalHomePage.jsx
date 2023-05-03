@@ -2,14 +2,33 @@ import './professionalHomePage.css';
 import AnnouncementIcon from '../../assets/announcementIcon.svg';
 import EditProfileIcon from '../../assets/editProfileIcon.svg';
 import { Link } from 'react-router-dom';
-import useNavBarProvider from '../../hooks/useNavBarProvider';
+import React, { useContext, useEffect } from "react";
+import { GlobalContext } from '../../contexts/GlobalContext';
+import api from '../../services/api';
 
 function ProfessionalHomePage() {
-    const { userUnifiedTable } = useNavBarProvider();
+    const { token, userLogedId, userUnifiedTable, setUserUnifiedTable } = useContext(GlobalContext);
+
+    useEffect(() => {
+        if (userLogedId) {
+            const headers = { Authorization: `Bearer ${token}` };
+
+            api.get(`/users/unified-tabled/${userLogedId}`, { headers })
+                .then(response => {
+                    setUserUnifiedTable(response.data);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        }
+    }, [userLogedId]);
+
 
     if (!userUnifiedTable) {
         return null;
     }
+
+    console.log(userUnifiedTable.account);
 
     return (
         <div className='container-professional-homePage'>

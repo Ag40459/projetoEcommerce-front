@@ -5,15 +5,19 @@ import Checked from "../../assets/checked.svg";
 import './signUp.css';
 import EyeOpen from "../../assets/Input_Password_Eye_Open.svg";
 import NotChecked from "../../assets/notChecked.svg";
-import useNavBarProvider from '../../hooks/useNavBarProvider';
 import hcaptcha from "../../assets/hcaptcha.svg";
-import { useState } from "react";
+import React, { useContext, useState } from "react";
+import { GlobalContext } from '../../contexts/GlobalContext';
 
 
 function SignUp() {
-    const { openClodesEyeConfirmed, setOpenClodesEyeConfirmed, openClodesEye, setOpenClodesEye, emailProfessional, setEmailProfessional, passwordProfessional, setPasswordProfessional, confirmedPasswordProfessional, setConfirmedPasswordProfessional, setShowAlert, showAlert } = useNavBarProvider();
-    const [success, setSuccess] = useState();
-    const [error, setError] = useState();
+    const { emailProfessional, setEmailProfessional, passwordProfessional, setPasswordProfessional, confirmedPasswordProfessional, setConfirmedPasswordProfessional } = useContext(GlobalContext)
+    const [openClodesEyeConfirmed, setOpenClodesEyeConfirmed] = useState();
+    const [openClodesEye, setOpenClodesEye,] = useState();
+    const [hasUppercase, setHasUppercase] = useState(false);
+    const [hasLowercase, setHasLowercase] = useState(false);
+    const [hasMinLength, setHasMinLength] = useState(false);
+
 
     const checkPassword = {
         uppercase: false,
@@ -27,30 +31,19 @@ function SignUp() {
         e.preventDefault();
 
         if (!emailProfessional || !passwordProfessional || !confirmedPasswordProfessional) {
-            setShowAlert('Por favor, preencha todos os campos obrigatórios.');
-            setSuccess(null);
             return alert('Por favor, preencha todos os campos obrigatórios.')
         }
 
         if (passwordProfessional !== confirmedPasswordProfessional) {
-            setError('As senhas não coincidem.');
-            setSuccess(null);
-            return alert(error);
+            return alert('As senhas não coincidem.');
         }
 
         const emailRegex = /^[^\s@]+@[^\s@]+.[^\s@]+$/;
 
         if (!emailRegex.test(emailProfessional)) {
-            setError('Por favor, informe um endereço de email válido.');
-            setSuccess(null);
-            return alert(error);
+            return alert('Por favor, informe um endereço de email válido.');
         }
         try {
-            console.log(
-                emailProfessional,
-                passwordProfessional,
-                confirmedPasswordProfessional
-            );
             const response = await api.post('/users/sign-up', {
                 email: emailProfessional,
                 password: passwordProfessional,
@@ -58,29 +51,29 @@ function SignUp() {
             });
 
             if (response.status === 200) {
-                setSuccess('Cadastro realizado com sucesso!');
-                setError(null);
+                alert('Cadastro realizado com sucesso!');
             } else {
-                setError('Ocorreu um erro ao realizar o cadastro.1');
-                setSuccess(null);
+                alert('Ocorreu um erro ao realizar o cadastro.1');
             }
 
             navigate("/sign-in");
 
         } catch (error) {
-            setError('Ocorreu um erro ao realizar o cadastro.2');
-            setSuccess(null);
+            alert('Ocorreu um erro ao realizar o cadastro.2');
         }
     };
+
+    const updatePasswordValidity = (password) => {
+        setHasUppercase(/[A-Z]/.test(password));
+        setHasLowercase(/[a-z]/.test(password));
+        setHasMinLength(password.length >= 6);
+    }
 
     return (
         <div className='container-sign-up'>
             <div className='container-back-page'>
-                <Link
-                    style={{ textDecoration: 'none' }}
-                    to='/'>
-
-                    Voltar para Home
+                <Link className='link' to='#' onClick={() => window.history.back()}>
+                    Página Anterior
                 </Link>
             </div>
             <div className='container-sign-up-welcome'>
@@ -96,10 +89,12 @@ function SignUp() {
                         placeholder='E-mail' />
                     <input
                         type={openClodesEye ? 'password' : 'text'}
-                        onChange={(e) => setPasswordProfessional(e.target.value)}
+                        onChange={(e) => {
+                            setPasswordProfessional(e.target.value);
+                            updatePasswordValidity(e.target.value);
+                        }}
                         value={passwordProfessional}
                         placeholder='Senha'
-                        autocomplete='new-password'
                     />
                     <img
                         id='inputPasswordProfessional'
@@ -110,12 +105,12 @@ function SignUp() {
 
                     <input
                         value={confirmedPasswordProfessional}
-                        onChange={(e) => setConfirmedPasswordProfessional(e.target.value)}
+                        onChange={(e) => {
+                            setConfirmedPasswordProfessional(e.target.value);
+                            updatePasswordValidity(e.target.value);
+                        }}
                         type={openClodesEyeConfirmed ? 'password' : 'text'}
-                        placeholder='Confirmar Senha'
-                        autocomplete='new-password'
-                    />
-
+                        placeholder='Confirmar Senha' />
                     <img
                         id='inputConfirmedPasswordProfessional'
                         className='openCloseEye'
@@ -129,21 +124,24 @@ function SignUp() {
                         Sua senha deve conter:
                     </h4>
                     <div className='container-sign-up-rules-password'>
+
                         <div style={{ display: 'flex', gap: '1rem' }}>
                             <img
-                                src={/(?=.*[A-Z])/.test(passwordProfessional) ? Checked : NotChecked}
+                                src={hasUppercase ? Checked : NotChecked}
                                 alt="checked/ Notchecked" /> <p>Uma letra maiúscula</p>
                         </div>
                         <div style={{ display: 'flex', gap: '1rem' }}>
                             <img
-                                src={/(?=.*[a-z])/.test(passwordProfessional) ? Checked : NotChecked}
+                                src={hasLowercase ? Checked : NotChecked}
                                 alt="checked/ Notchecked" /> <p>Uma letra minúscula</p>
                         </div>
                         <div style={{ display: 'flex', gap: '1rem' }}>
                             <img
-                                src={/(?=.{6,})/.test(passwordProfessional) ? Checked : NotChecked}
+                                src={hasMinLength ? Checked : NotChecked}
                                 alt="checked/ Notchecked" /> <p>Mínimo de 6 caracteres</p>
                         </div>
+
+
                     </div>
                 </div>
                 <div className='container-sign-up-terms-and-conditions'>

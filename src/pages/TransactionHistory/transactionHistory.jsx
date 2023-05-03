@@ -1,24 +1,29 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import useNavBarProvider from '../../hooks/useNavBarProvider';
 import './transactionHistory.css';
+import React, { useContext, useState } from "react";
+import { GlobalContext } from '../../contexts/GlobalContext';
 
 function TransactionHistory() {
+    const { } = useContext(GlobalContext);
+
     const [historyTransaction, setHistoryTransaction] = useState(true);
-    const { userUnifiedTable } = useNavBarProvider();
+    const { userUnifiedTable } = useContext(GlobalContext);
+
 
     if (!userUnifiedTable) {
         return null;
     }
 
+
     return (
         <div className='container-transactionHistory'>
 
             <div className='container-back-page'>
-                <Link className='link' to='/credits-Professional'>
-                    Voltar
+                <Link className='link' to='#' onClick={() => window.history.back()}>
+                    Página Anterior
                 </Link>
             </div>
+
             <div className='container-transactionHistory-painel'>
                 <h1>Histórico de Transações:</h1>
                 {!historyTransaction

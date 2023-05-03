@@ -106,8 +106,8 @@ function EditProfileProfessional() {
     return (
         <div className='container-editProfileProfessional'>
             <div className='container-back-page'>
-                <Link className='link' to='/professional-home'>
-                    Voltar
+                <Link className='link' to='#' onClick={() => window.history.back()}>
+                    Página Anterior
                 </Link>
             </div>
             <h1>Atualizar Perfil</h1>
