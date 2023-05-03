@@ -213,21 +213,6 @@ function EditProfileProfessional() {
                         onChange={handleChange}
                     />
 
-                    {/* <select
-                    className='select-plan'
-                    id='category'
-                    name='category'
-                    placeholder='Categoria'>
-                    <option value=''>
-                        Selecione uma categoria
-                    </option>
-                    {categories.map(category => (
-                        <option key={category.id} value={category.id}>
-                            {category.name}
-                        </option>
-                    ))}
-                </select> */}
-
                     <input
                         type='password'
                         id='password'

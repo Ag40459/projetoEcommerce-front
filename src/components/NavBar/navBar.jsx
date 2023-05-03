@@ -7,7 +7,7 @@ import { slide as Menu } from "react-burger-menu";
 import "./navBar.css";
 
 const Navbar = () => {
-  const { token, userUnifiedTable, removeUserLogedId, removeToken } = useContext(GlobalContext);
+  const { token, userUnifiedTable, removeUserLogedId, removeToken, categories } = useContext(GlobalContext);
   const [modalOpenCloseSearch, setModalOpenCloseSearch] = useState(false);
   const [modalOpenCloseMenu, setModalOpenCloseMenu] = useState(false);
   const [display, setdisplay] = useState(false);
@@ -118,12 +118,21 @@ const Navbar = () => {
 
           <select
             name=""
-            className="customization-option">
-
+            className="customization-option"
+          >
             <option
               value="">
-              Acompanhates
+              Selecione uma Categoria ...
             </option>
+            {categories.map(category => (
+              <option
+                key={category.id}
+                value={category.title}>
+                {category.title}
+              </option>
+            )
+            )
+            }
           </select>
           <input
             type="text"

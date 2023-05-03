@@ -10,6 +10,7 @@
 .container-postAd form {
     display: flex;
     width: 100%;
+    /* border: 2px solid red; */
 }
 
 .container-postAd-title {
@@ -40,19 +41,19 @@
 }
 
 .container-postAd-form1 {
-    display: flex;
+    display: none;
     flex-direction: column;
     width: 100%;
-    height: 30rem;
     justify-content: center;
     padding: 1rem;
     gap: 1rem;
     border-radius: 0.5rem;
     background-color: #88A5C1;
+    /* border: 2px solid red; */
 }
 
 .container-postAd-form1 input {
-    width: 32rem;
+    width: 30rem;
     height: 4.3rem;
     left: 12.3rem;
     top: 30.8rem;
