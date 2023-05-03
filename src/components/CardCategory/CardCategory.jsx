@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import ImgNull from '../../assets/imagemConstrucao.jpg'
-import api from '../../services/api';
 import { useEffect } from 'react';
 import './CardCategory.css';
 import React, { useContext } from "react";
@@ -9,20 +8,11 @@ import { GlobalContext } from '../../contexts/GlobalContext';
 
 export function CardCategory() {
 
-    const { setIdCategory, categories, setCategories, removeIdCategory } = useContext(GlobalContext);
+    const { setIdCategory, categories, removeIdCategory } = useContext(GlobalContext);
 
 
     useEffect(() => {
         removeIdCategory();
-
-        api.get('/categories')
-            .then(response => {
-                setCategories(response.data);
-
-            })
-            .catch(error => {
-                console.error(error);
-            });
     }, []);
 
     const handleSelectIdCategory = (event) => {

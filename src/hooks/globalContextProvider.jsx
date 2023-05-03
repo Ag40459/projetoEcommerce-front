@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocalStorage } from 'react-use';
 import { GlobalContext } from '../contexts/GlobalContext';
+import api from '../services/api';
+
 
 export const GlobalContextProvider = ({ children }) => {
     const [token, setToken, removeToken] = useLocalStorage('token', '');
@@ -15,7 +17,18 @@ export const GlobalContextProvider = ({ children }) => {
     const [confirmedPasswordProfessional, setConfirmedPasswordProfessional] = useState("");
     const [userUnifiedTable, setUserUnifiedTable] = useState(null);
 
+    useEffect(() => {
+        removeIdCategory();
 
+        api.get('/categories')
+            .then(response => {
+                setCategories(response.data);
+
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }, []);
 
     return (
         <GlobalContext.Provider value={{

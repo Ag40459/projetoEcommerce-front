@@ -1,20 +1,25 @@
 import React, { useState, useContext } from 'react';
 import './postAd.css';
 import api from '../../services/api';
-import { useNavigate } from 'react-router-dom';
 import { GlobalContext } from '../../contexts/GlobalContext';
-import { Stepper, Step, StepLabel, Button, Typography } from '@mui/material';
-const steps = ['Nome', 'Data de Nascimento', 'Telefone', 'E-mail', 'Categoria', 'Cidade', 'Estado', 'Plano', 'CEP', 'Título do Anúncio', 'Descrição do Anúncio'];
+import { Step, StepLabel, Stepper } from '@mui/material';
+import { Button } from '@mui/base';
 
 const PostAd = () => {
-    const { categories } = useContext(GlobalContext);
-    const navigate = useNavigate();
     const [activeStep, setActiveStep] = useState(0);
-
+    const [plano, setPlano] = useState("");
+    const [imagens, setImagens] = useState([]);
+    const [formaDePagamento, setFormaDePagamento] = useState("");
+    const { categories } = useContext(GlobalContext);
+    const [phone, setPhone] = useState("");
+    const [titleError, setTitleError] = useState("");
+    const [descriptionError, setDescriptionError] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
+    const [buttonDisabled, setButtonDisabled] = useState(true);
     const [formData, setFormData] = useState({
         name: '',
         birthdate: '',
-        phone: '',
+        phone: phone,
         email: '',
         category_id: '',
         city: '',
@@ -25,7 +30,50 @@ const PostAd = () => {
         description: '',
     });
 
-    const [isLoading, setIsLoading] = useState(false);
+    const checkFormValidity = () => {
+        if (formData.name !== "" && formData.email !== "" && formData.phone !== "" && formData.description !== "") {
+            setButtonDisabled(false);
+        } else {
+            setButtonDisabled(true);
+        }
+    };
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevState) => ({ ...prevState, [name]: value }));
+
+        if (name === "title" && value.length < 5) {
+            setTitleError("O título deve ter no mínimo 5 caracteres.");
+            return;
+        }
+
+        if (name === "description" && value.length < 20) {
+            setDescriptionError("A descrição deve ter no mínimo 20 caracteres.");
+            return;
+        }
+
+        setTitleError("");
+        setDescriptionError("");
+        checkFormValidity();
+    };
+
+    function formatPhoneNumber(value) {
+        const phoneNumber = value.replace(/\D/g, "");
+
+        if (phoneNumber.length === 11) {
+            return `(${phoneNumber.slice(0, 2)}) ${phoneNumber.slice(2, 7)}-${phoneNumber.slice(7)}`;
+        } else if (phoneNumber.length < 11) {
+            return `(${phoneNumber.slice(0, 2)}) ${phoneNumber.slice(2, 6)}-${phoneNumber.slice(6)}`;
+        }
+
+        return phoneNumber;
+    }
+
+    function handlePhone(event) {
+        const { name, value } = event.target;
+        setPhone(formatPhoneNumber(event.target.value));
+        checkFormValidity();
+        return setFormData((prevState) => ({ ...prevState, [name]: value }));
+    }
 
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -37,139 +85,48 @@ const PostAd = () => {
 
     const handleReset = () => {
         setActiveStep(0);
-        setFormData({
-            name: '',
-            birthdate: '',
-            phone: '',
-            email: '',
-            category_id: '',
-            city: '',
-            state: '',
-            plan: '',
-            zip_code: '',
-            title: '',
-            description: '',
-        });
+        setPlano("");
+        setImagens([]);
+        setFormaDePagamento("");
     };
 
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-        setFormData((prevState) => ({ ...prevState, [name]: value }));
+    const handlePlanoChange = (event) => {
+        setPlano(event.target.value);
     };
 
-    const getStepContent = (stepIndex) => {
-        switch (stepIndex) {
-            case 0:
-                return (
-                    <>
-                        <Typography variant="h6">Informe o seu nome:</Typography>
-                        <input type="text" name="name" value={formData.name} onChange={handleChange} />
-                    </>
-                );
-            case 1:
-                return (
-                    <>
-                        <Typography variant="h6">Informe a sua data de nascimento:</Typography>
-                        <input type="text" name="birthdate" value={formData.birthdate} onChange={handleChange} />
-                    </>
-                );
-            case 2:
-                return (
-                    <>
-                        <Typography variant="h6">Informe o seu telefone:</Typography>
-                        <input type="text" name="phone" value={formData.phone} onChange={handleChange} />
-                    </>
-                );
-            case 3:
-                return (
-                    <>
-                        <Typography variant="h6">Informe o seu e-mail:</Typography>
-                        <input type="email" name="email" value={formData.email} onChange={handleChange} />
-                    </>
-                );
-            case 4:
-                return (
-                    <>
-                        <Typography variant="h6">Selecione uma categoria:</Typography>
-                        <select
-                            name=""
-                            className="customization-option"
-                        >
-                            <option
-                                value="">
-                            </option>
-                            {categories.map(category => (
-                                <option
-                                    key={category.id}
-                                    value={category.title}>
-                                    {category.title}
-                                </option>
-                            ))}
-                        </select>
-                    </>
-                );
-            case 5:
-                return (
-                    <>
-                        <Typography variant="h6">Informe a cidade:</Typography>
-                        <input type="text" name="city" value={formData.city} onChange={handleChange} />
-                    </>
-                );
-            case 6:
-                return (
-                    <>
-                        <Typography variant="h6">Selecione o estado:</Typography>
-                        <select name="state" value={formData.state} onChange={handleChange}>
-                            <option value="">Selecione...</option>
-                            <option value="SP">São Paulo</option>
-                            <option value="RJ">Rio de Janeiro</option>
-                            <option value="MG">Minas Gerais</option>
-                            <option value="ES">Espírito Santo</option>
-                        </select>
-                    </>
-                );
-            case 7:
-                return (
-                    <>
-                        <Typography variant="h6">Selecione o plano:</Typography>
-                        <select name="plan" value={formData.plan} onChange={handleChange}>
-                            <option value="">Selecione...</option>
-                            <option value="b">Básico</option>
-                            <option value="p">Premium</option>
-                        </select>
-                    </>
-                );
-            case 8:
-                return (
-                    <>
-                        <Typography variant="h6">Informe o CEP:</Typography>
-                        <input type="text" name="zip_code" value={formData.zip_code} onChange={handleChange} />
-                    </>
-                );
-            case 9:
-                return (
-                    <>
-                        <Typography variant="h6">Informe o título do seu anúncio:</Typography>
-                        <input type="text" name="title" value={formData.title} onChange={handleChange} />
-                    </>
-                );
-            case 10:
-                return (
-                    <>
-                        <Typography variant="h6">Escreva a descrição do seu anúncio:</Typography>
-                        <textarea name="description" value={formData.description} onChange={handleChange} />
-                    </>
-                );
-            default:
-                return null;
-        }
-    }
+    const handleImagensChange = (event) => {
+        setImagens(event.target.files);
+    };
+
+    const handleFormaDePagamentoChange = (event) => {
+        setFormaDePagamento(event.target.value);
+    };
+
+    const isStepOptional = (step) => {
+        return step === 2;
+    };
+
+    const isStepSkipped = (step) => {
+        return step === 2 && imagens.length === 0;
+    };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         setIsLoading(true);
 
         const { category_id, ...dataWithoutCategoryId } = formData;
+
+        if (formData.title.length < 5) {
+            setIsLoading(false);
+            alert("O título deve ter no mínimo 5 caracteres.");
+            return;
+        }
+
+        if (formData.description.length < 20) {
+            setIsLoading(false);
+            alert("A descrição deve ter no mínimo 20 caracteres.");
+            return;
+        }
 
         try {
             const response = await api.patch(
@@ -192,144 +149,207 @@ const PostAd = () => {
         }
     };
 
-    const isFormDataValid = () => {
-        const requiredFields = [
-            'name',
-            'birthdate',
-            'phone',
-            'email',
-            'category_id',
-            'city',
-            'state',
-            'plan',
-            'zip_code',
-            'title',
-            'description',
-        ];
-
-        return requiredFields.every((field) => !!formData[field]);
-    };
-
     return (
-        <div className="container-postAd">
-            <form className="container-postAd-form1" onSubmit={handleSubmit}>
-                <label htmlFor="name">Nome</label>
-                <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                />
-                <label htmlFor="birthdate">Data de nascimento</label>
-                <input
-                    type="text"
-                    id="birthdate"
-                    name="birthdate"
-                    value={formData.birthdate}
-                    onChange={handleChange}
-                />
-
-                <label htmlFor="phone">Telefone</label>
-                <input
-                    type="text"
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                />
-
-                <label htmlFor="email">E-mail</label>
-                <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                />
-
-                <label htmlFor="category_id">Categoria</label>
-                <select
-                    id="category_id"
-                    name="category_id"
-                    value={formData.category_id}
-                    onChange={(event) => setFormData({ ...formData, category_id: event.target.value })}
-                    className='customization-option'
+        <div>
+            <Stepper
+                activeStep={activeStep}
+            >
+                <Step
                 >
-                    <option value="">Selecione uma categoria</option>
-                    {categories.map((category) => (
-                        <option key={category.id} value={category.title}>
-                            {category.title}
-                        </option>
-                    ))}
-                </select>
+                    <StepLabel>
+                        Formulário
+                    </StepLabel>
+                </Step>
+                <Step>
+                    <StepLabel>
+                        Plano
+                    </StepLabel>
+                </Step>
+                <Step>
+                    <StepLabel>
+                        Imagens
+                    </StepLabel>
+                </Step>
+                <Step>
+                    <StepLabel>
+                        Pagamento
+                    </StepLabel>
+                </Step>
+            </Stepper>
+            {activeStep === 0 && (
+                <div>
+                    <h2>Formulário</h2>
+                    <form
+                        className="container-postAd-form1"
+                        onSubmit={handleSubmit}>
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Nome"
+                            value={formData.name}
+                            onChange={handleChange}
+                        />
+                        <input
+                            type="date"
+                            id="birthdate"
+                            name="birthdate"
+                            placeholder="Data de nascimento"
+                            value={formData.birthdate}
+                            onChange={handleChange}
+                        />
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder="(99) 99999-9999"
+                            value={phone}
+                            onChange={handlePhone}
+                        />
 
-                <label htmlFor="state">Estado</label>
-                <select
-                    className='customization-option'
-                    id="state"
-                    name="state"
-                    value={formData.state}
-                    onChange={handleChange}
-                >
-                    <option value="">Selecione o estado</option>
-                    <option value="PE">PE</option>
-                </select>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="E-mail"
+                            value={formData.email}
+                            onChange={handleChange}
+                        />
+                        <select
+                            id="category_id"
+                            name="category_id"
+                            value={formData.category_id}
+                            onChange={(event) => setFormData((prevFormData) => ({ ...prevFormData, category_id: event.target.value }))}
+                            className='customization-option'
+                        >
+                            <option disabled selected value="">Categoria</option>
+                            {categories.map((category) => (
+                                <option
+                                    key={category.id}
+                                    value={category.id}>
+                                    {category.title}
+                                </option>
+                            ))}
+                        </select>
 
-                <label htmlFor="city">Cidade</label>
-                <select
-                    className='customization-option'
-                    id="city"
-                    name="city"
-                    value={formData.city}
-                    onChange={handleChange}
-                >
-                    <option value="">Selecione a cidade</option>
-                    <option value="Recife">Recife</option>
-                </select>
+                        <select
+                            className='customization-option'
+                            id="state"
+                            name="state"
+                            value={formData.state}
+                            onChange={handleChange}
+                        >
+                            <option value="">Estado</option>
+                            <option value="PE">PE</option>
+                        </select>
 
-                <label htmlFor="plan">Plano</label>
-                <input
-                    type="text"
-                    id="plan"
-                    name="plan"
-                    value={formData.plan}
-                    onChange={handleChange}
-                />
+                        <select
+                            className='customization-option'
+                            id="city"
+                            name="city"
+                            value={formData.city}
+                            onChange={handleChange}
+                        >
+                            <option value="">Cidade</option>
+                            <option value="Recife">Recife</option>
+                        </select>
 
-                <label htmlFor="zip_code">CEP</label>
-                <input
-                    type="text"
-                    id="zip_code"
-                    name="zip_code"
-                    value={formData.zip_code}
-                    onChange={handleChange}
-                />
+                        <input
+                            type="text"
+                            id="title"
+                            name="title"
+                            placeholder="Título do seu anúncio ..."
+                            value={formData.title}
+                            onChange={handleChange}
+                        />
 
-                <label htmlFor="title">Título do anúncio</label>
-                <input
-                    type="text"
-                    id="title"
-                    name="title"
-                    value={formData.title}
-                    onChange={handleChange}
-                />
+                        <input
+                            id="description"
+                            name="description"
+                            placeholder="Descrição do seu anúncio. A descrição deve ter no mínimo 20 caracteres."
+                            value={formData.description}
+                            onChange={handleChange}
+                        />
+                        <Button variant="contained" color="primary" onClick={handleNext} disabled={buttonDisabled}>
+                            Próximo
+                        </Button>
+                    </form>
+                </div>
+            )}
+            {activeStep === 1 && (
+                <div>
+                    <h2>Escolha o plano</h2>
+                    <form>
+                        <label>
+                            Plano:
+                            <select
+                                className='customization-option'
+                                value={plano}
+                                onChange={handlePlanoChange}
+                            >
+                                <option disabled selected value="">Selecione seu Plano</option>
+                                <option value="plano1">Free</option>
+                                <option value="plano2">Premium</option>
+                                <option value="plano3">Platina</option>
+                            </select>
+                        </label>
+                        <br />
+                        <Button onClick={handleBack}>Voltar</Button>
+                        <Button variant="contained" color="primary" onClick={handleNext} disabled={buttonDisabled}>
+                            Próximo
+                        </Button>
+                    </form>
+                </div>
+            )}
+            {activeStep === 2 && (
+                <div>
+                    <h2>Envie imagens</h2>
+                    <form>
+                        <label>
+                            Selecione as imagens:
+                            <input
+                                type="file"
+                                name="imagens"
+                                multiple onChange={handleImagensChange} />
+                        </label>
+                        <br />
+                        {plano === "plano1" && <p>Pode enviar até 1 imagens.</p>}
+                        {plano === "plano2" && <p>Pode enviar até 5 imagens.</p>}
+                        {plano === "plano3" && <p>Pode enviar até 10 imagens.</p>}
+                        <Button onClick={handleBack}>Voltar</Button>
+                        <Button variant="contained" color="primary" onClick={handleNext} disabled={isStepSkipped(activeStep)}>
+                            Próximo
+                        </Button>
+                    </form>
+                </div>
+            )}
+            {activeStep === 3 && (
+                <div>
+                    <h2>Pagamento</h2>
+                    <form>
+                        <select
+                            className='customization-option'
+                            value={formaDePagamento}
+                            onChange={handleFormaDePagamentoChange}>
+                            <option disabled selected value="">Forma de Pagamento:</option>
 
-                <label htmlFor="description">Descrição do anúncio</label>
-                <input
-                    id="description"
-                    name="description"
-                    value={formData.description}
-                    onChange={handleChange}
-                />
+                            <option value="cartao">
+                                Pix
+                            </option>
+                            <option value="boleto">
+                                Boleto
+                            </option>
+                        </select>
+                        <br />
+                        <Button onClick={handleBack}>Voltar</Button>
+                        <Button variant="contained" color="primary" onClick={handleReset}>
+                            Enviar
+                        </Button>
+                    </form>
+                </div>
 
-                <button type="submit" disabled={!isFormDataValid() || isLoading}>
-                    {isLoading ? 'Carregando...' : 'Publicar anúncio'}
-                </button>
-            </form>
-        </div>
-
-    );
-};
+            )}
+        </div>)
+}
 
 export default PostAd;

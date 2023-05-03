@@ -10,7 +10,6 @@
 .container-postAd form {
     display: flex;
     width: 100%;
-    /* border: 2px solid red; */
 }
 
 .container-postAd-title {
@@ -41,7 +40,7 @@
 }
 
 .container-postAd-form1 {
-    display: none;
+    display: flex;
     flex-direction: column;
     width: 100%;
     justify-content: center;
@@ -53,7 +52,7 @@
 }
 
 .container-postAd-form1 input {
-    width: 30rem;
+    width: 95%;
     height: 4.3rem;
     left: 12.3rem;
     top: 30.8rem;
@@ -62,6 +61,14 @@
     background: rgba(255, 255, 255, 0.16);
     border-radius: 0.8rem;
     border: none;
+}
+
+.container-postAd-form1 .customization-option {
+    width: 95%;
+}
+
+.teste {
+    color: pink;
 }
 
 .container-postAd-form1-options {
