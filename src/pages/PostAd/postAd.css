@@ -42,8 +42,9 @@
 .container-postAd-form1 {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    max-width: 100vw;
     justify-content: center;
+    margin-left: 1rem;
     padding: 1rem;
     gap: 1rem;
     border-radius: 0.5rem;
@@ -65,10 +66,6 @@
 
 .container-postAd-form1 .customization-option {
     width: 95%;
-}
-
-.teste {
-    color: pink;
 }
 
 .container-postAd-form1-options {
@@ -105,7 +102,7 @@
     .container-postAd-form1 {
         display: flex;
         flex-direction: column;
-        width: 35rem;
+        width: 95%;
         padding: 1rem;
         gap: 1rem;
         border-radius: 0.5rem;
@@ -278,8 +275,10 @@
 
 #title {
     height: 10rem;
+    word-wrap: break-word;
 }
 
 #description {
     height: 25rem;
+    width: 95%;
 }

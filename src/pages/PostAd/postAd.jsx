@@ -1,20 +1,29 @@
 import React, { useState, useContext } from 'react';
+import { styled } from "@mui/material/styles";
+import Paper from "@mui/material/Paper";
 import './postAd.css';
 import api from '../../services/api';
 import { GlobalContext } from '../../contexts/GlobalContext';
-import { Step, StepLabel, Stepper } from '@mui/material';
+import { Step, Stepper } from '@mui/material';
 import { Button } from '@mui/base';
 
 const PostAd = () => {
+    const { categories, userLogedId, token } = useContext(GlobalContext);
     const [activeStep, setActiveStep] = useState(0);
+    const [stepsState, setStepsState] = useState({
+        0: true,
+        1: false,
+        2: false,
+        3: false,
+    });
+    const CustomStepper = styled(Stepper)`max-width: 100%;`;
     const [plano, setPlano] = useState("");
     const [imagens, setImagens] = useState([]);
     const [formaDePagamento, setFormaDePagamento] = useState("");
-    const { categories } = useContext(GlobalContext);
     const [phone, setPhone] = useState("");
     const [titleError, setTitleError] = useState("");
     const [descriptionError, setDescriptionError] = useState("");
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, tate(false);
     const [buttonDisabled, setButtonDisabled] = useState(true);
     const [formData, setFormData] = useState({
         name: '',
@@ -29,14 +38,22 @@ const PostAd = () => {
         title: '',
         description: '',
     });
+    const StyledPaper = styled(Paper)(({ active }) => ({
+        padding: "0.5rem",
+        marginTop: "1rem",
+        marginBottom: "1rem",
+        backgroundColor: active ? "blue" : "white",
+        color: active ? "white" : "black"
+    }));
 
     const checkFormValidity = () => {
-        if (formData.name !== "" && formData.email !== "" && formData.phone !== "" && formData.description !== "") {
+        if (formData.name !== "" && formData.email !== "" && formData.phone !== "" && formData.description !== "" && formData.title !== "") {
             setButtonDisabled(false);
         } else {
             setButtonDisabled(true);
         }
     };
+
     const handleChange = (event) => {
         const { name, value } = event.target;
         setFormData((prevState) => ({ ...prevState, [name]: value }));
@@ -76,11 +93,31 @@ const PostAd = () => {
     }
 
     const handleNext = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
+        const currentDate = new Date();
+        const birthdate = new Date(formData.birthdate);
+        const ageDiff = currentDate - birthdate;
+        const ageInYears = ageDiff / (1000 * 60 * 60 * 24 * 365);
+        if (ageInYears < 18) {
+            alert("Você deve ter mais de 18 anos .");
+            return;
+        } else if (ageInYears >= 18) {
+            setStepsState(prevState => ({
+                ...prevState,
+                [activeStep + 1]: true
+            }));
+        }
+        setActiveStep(prevStep => prevStep + 1);
+
+
     };
 
     const handleBack = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
+        setStepsState((prevState) => ({
+            ...prevState,
+            [activeStep]: false,
+            [activeStep - 1]: true,
+        }));
     };
 
     const handleReset = () => {
@@ -102,35 +139,30 @@ const PostAd = () => {
         setFormaDePagamento(event.target.value);
     };
 
-    const isStepOptional = (step) => {
-        return step === 2;
-    };
-
     const isStepSkipped = (step) => {
         return step === 2 && imagens.length === 0;
     };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        setIsLoading(true);
 
         const { category_id, ...dataWithoutCategoryId } = formData;
 
         if (formData.title.length < 5) {
-            setIsLoading(false);
+
             alert("O título deve ter no mínimo 5 caracteres.");
             return;
         }
 
         if (formData.description.length < 20) {
-            setIsLoading(false);
+
             alert("A descrição deve ter no mínimo 20 caracteres.");
             return;
         }
 
         try {
             const response = await api.patch(
-                `/users/updateUser/${userUnifiedTable.user.id}`,
+                `/users/updateUser/${userLogedId} `,
                 dataWithoutCategoryId,
                 {
                     headers: {
@@ -139,11 +171,11 @@ const PostAd = () => {
                 }
             );
             if (response.status === 200) {
-                setIsLoading(false);
+
                 alert('Dados atualizados com sucesso!');
             }
         } catch (error) {
-            setIsLoading(false);
+
             alert('Erro ao atualizar dados.');
             console.error(error);
         }
@@ -151,35 +183,34 @@ const PostAd = () => {
 
     return (
         <div>
-            <Stepper
-                activeStep={activeStep}
-            >
-                <Step
-                >
-                    <StepLabel>
-                        Formulário
-                    </StepLabel>
+            <CustomStepper activeStep={activeStep}>
+                <Step>
+                    <StyledPaper elevation={5} active={stepsState[0]}>
+                        Dados
+                    </StyledPaper>
                 </Step>
                 <Step>
-                    <StepLabel>
+                    <StyledPaper elevation={5} active={stepsState[1]}>
                         Plano
-                    </StepLabel>
+                    </StyledPaper>
                 </Step>
                 <Step>
-                    <StepLabel>
+                    <StyledPaper elevation={5} active={stepsState[2]}>
                         Imagens
-                    </StepLabel>
+                    </StyledPaper>
                 </Step>
                 <Step>
-                    <StepLabel>
-                        Pagamento
-                    </StepLabel>
+                    <StyledPaper elevation={5} active={stepsState[3]}>
+                        Pag
+                    </StyledPaper>
                 </Step>
-            </Stepper>
+            </CustomStepper>
+
+
             {activeStep === 0 && (
                 <div>
-                    <h2>Formulário</h2>
                     <form
+                        style={{ marginTop: "1rem" }}
                         className="container-postAd-form1"
                         onSubmit={handleSubmit}>
                         <input
@@ -222,7 +253,7 @@ const PostAd = () => {
                             onChange={(event) => setFormData((prevFormData) => ({ ...prevFormData, category_id: event.target.value }))}
                             className='customization-option'
                         >
-                            <option disabled selected value="">Categoria</option>
+                            <option disabled value="">Categoria</option>
                             {categories.map((category) => (
                                 <option
                                     key={category.id}
@@ -254,23 +285,36 @@ const PostAd = () => {
                             <option value="Recife">Recife</option>
                         </select>
 
-                        <input
-                            type="text"
+                        <textarea
+                            style={{ paddingTop: "3rem" }}
                             id="title"
+                            className='customization-option'
                             name="title"
                             placeholder="Título do seu anúncio ..."
                             value={formData.title}
                             onChange={handleChange}
+                            rows={5}
+                            multiline
                         />
 
-                        <input
+                        <textarea
+                            style={{ paddingTop: "4rem" }}
                             id="description"
+                            className='customization-option'
                             name="description"
                             placeholder="Descrição do seu anúncio. A descrição deve ter no mínimo 20 caracteres."
                             value={formData.description}
                             onChange={handleChange}
+                            rows={5}
+                            multiline
                         />
-                        <Button variant="contained" color="primary" onClick={handleNext} disabled={buttonDisabled}>
+
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={handleNext}
+                            disabled={buttonDisabled}
+                        >
                             Próximo
                         </Button>
                     </form>
@@ -278,32 +322,37 @@ const PostAd = () => {
             )}
             {activeStep === 1 && (
                 <div>
-                    <h2>Escolha o plano</h2>
                     <form>
-                        <label>
-                            Plano:
-                            <select
-                                className='customization-option'
-                                value={plano}
-                                onChange={handlePlanoChange}
-                            >
-                                <option disabled selected value="">Selecione seu Plano</option>
-                                <option value="plano1">Free</option>
-                                <option value="plano2">Premium</option>
-                                <option value="plano3">Platina</option>
-                            </select>
-                        </label>
+
+                        <select
+                            className='customization-option'
+                            value={plano}
+                            onChange={handlePlanoChange}
+                        >
+                            <option disabled value="">Selecione seu Plano</option>
+                            <option value="plano1">Free</option>
+                            <option value="plano2">Premium</option>
+                            <option value="plano3">Platina</option>
+                        </select>
                         <br />
-                        <Button onClick={handleBack}>Voltar</Button>
-                        <Button variant="contained" color="primary" onClick={handleNext} disabled={buttonDisabled}>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={handleNext}
+                            disabled={buttonDisabled}
+                        >
                             Próximo
                         </Button>
+                        <Button
+                            onClick={handleBack}>
+                            Voltar
+                        </Button>
+
                     </form>
                 </div>
             )}
             {activeStep === 2 && (
                 <div>
-                    <h2>Envie imagens</h2>
                     <form>
                         <label>
                             Selecione as imagens:
@@ -316,9 +365,16 @@ const PostAd = () => {
                         {plano === "plano1" && <p>Pode enviar até 1 imagens.</p>}
                         {plano === "plano2" && <p>Pode enviar até 5 imagens.</p>}
                         {plano === "plano3" && <p>Pode enviar até 10 imagens.</p>}
-                        <Button onClick={handleBack}>Voltar</Button>
-                        <Button variant="contained" color="primary" onClick={handleNext} disabled={isStepSkipped(activeStep)}>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={handleNext}
+                            disabled={isStepSkipped(activeStep)}>
                             Próximo
+                        </Button>
+                        <Button
+                            onClick={handleBack}>
+                            Voltar
                         </Button>
                     </form>
                 </div>
@@ -331,7 +387,7 @@ const PostAd = () => {
                             className='customization-option'
                             value={formaDePagamento}
                             onChange={handleFormaDePagamentoChange}>
-                            <option disabled selected value="">Forma de Pagamento:</option>
+                            <option disabled value="">Forma de Pagamento:</option>
 
                             <option value="cartao">
                                 Pix
@@ -339,11 +395,20 @@ const PostAd = () => {
                             <option value="boleto">
                                 Boleto
                             </option>
+                            <option value="boleto">
+                                Dinheiro
+                            </option>
                         </select>
                         <br />
-                        <Button onClick={handleBack}>Voltar</Button>
-                        <Button variant="contained" color="primary" onClick={handleReset}>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={handleSubmit}>
                             Enviar
+                        </Button>
+                        <Button
+                            onClick={handleBack}>
+                            Voltar
                         </Button>
                     </form>
                 </div>
