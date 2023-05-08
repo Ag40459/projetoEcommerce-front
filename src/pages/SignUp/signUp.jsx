@@ -165,7 +165,6 @@ function SignUp() {
                 </div>
 
                 <div className="container-sign-up-terms-and-conditions">
-                    <h4>Termos, Condições e Política de Privacidade</h4>
 
                     <label
                         style={{ display: 'flex', gap: '2rem' }}
