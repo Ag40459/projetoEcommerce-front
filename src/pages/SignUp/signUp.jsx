@@ -1,12 +1,12 @@
 import api from "../../services/api";
 import { Link, useNavigate } from 'react-router-dom';
 import EyeClose from "../../assets/Input_Password_Eye_Close.svg";
-import Checked from "../../assets/checked.svg";
-import './signUp.css';
 import EyeOpen from "../../assets/Input_Password_Eye_Open.svg";
+import Checked from "../../assets/checked.svg";
 import NotChecked from "../../assets/notChecked.svg";
+import './signUp.css';
 import ReCAPTCHA from 'react-google-recaptcha';
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { GlobalContext } from '../../contexts/GlobalContext';
 
 
@@ -19,6 +19,8 @@ function SignUp() {
     const [hasMinLength, setHasMinLength] = useState(false);
     const [isChecked, setIsChecked] = useState(false);
     const [isHuman, setIsHuman] = useState(false);
+    const siteKey = "6LcO7OwlAAAAAEgEFH91DfTeM1yxy5HyWckBFyz-";
+    const secretKey = "6LcO7OwlAAAAAKMi7lzAm19fR5yEziaTYaQyEbny";
 
     const navigate = useNavigate();
 
@@ -69,6 +71,27 @@ function SignUp() {
         setHasLowercase(/[a-z]/.test(password));
         setHasMinLength(password.length >= 6);
     }
+
+    useEffect(() => {
+        // carrega a biblioteca do reCAPTCHA Enterprise
+        const script = document.createElement("script");
+        script.src = "https://www.google.com/recaptcha/enterprise.js?onload=onLoadCallback&render=" + siteKey;
+        script.async = true;
+        document.head.appendChild(script);
+
+
+        window.onLoadCallback = () => {
+            grecaptcha.enterprise.ready(() => {
+                grecaptcha.enterprise.execute(siteKey, { action: "login" })
+                    .then((token) => {
+                        console.log("Token do reCAPTCHA: ", token);
+                    })
+                    .catch((error) => {
+                        console.error("Erro ao obter o token do reCAPTCHA: ", error);
+                    });
+            });
+        };
+    }, []);
 
     return (
         <div className='container-sign-up'>
@@ -158,9 +181,6 @@ function SignUp() {
                             </p>
                         </div>
 
-
-
-
                     </div>
                 </div>
 
@@ -189,9 +209,11 @@ function SignUp() {
                     </label>
                 </div>
 
-                <div>
+                <div
+                    id="myRecaptcha"
+                >
                     <ReCAPTCHA
-                        sitekey="6LddFOklAAAAAPxf4OKxGYmLARudU0pXUD3Ok5vp"
+                        sitekey={siteKey}
                         onChange={handleVerifyReCAPTCHA}
                     />
                 </div>

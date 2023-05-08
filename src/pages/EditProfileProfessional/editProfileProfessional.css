@@ -27,6 +27,17 @@
     gap: 1rem;
 }
 
+#inputPasswordProfessional {
+    position: absolute;
+    top: 1.5rem;
+}
+
+#inputconfirmPasswordProfessional {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.5rem;
+}
+
 .container-editProfileProfessional form label {
     font-size: 2.2rem;
     font-weight: 600;

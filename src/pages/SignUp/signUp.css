@@ -65,11 +65,11 @@
 .container-sign-up-rules-password {
     display: flex;
     width: 35rem;
-    height: 10rem;
+    height: 13rem;
     flex-direction: column;
     justify-content: center;
     margin-top: 1rem;
-    padding-left: 1rem;
+    padding-left: 2rem;
     background-color: rgb(243, 237, 237);
     gap: 1rem;
     border-radius: 0.8rem;
@@ -85,6 +85,10 @@
     width: 33rem;
     padding: 0.5rem;
     gap: 1rem;
+}
+
+.container-sign-up-terms-and-conditions p {
+    text-align: justify;
 }
 
 .container-sign-up-input-login-hCaptcha {

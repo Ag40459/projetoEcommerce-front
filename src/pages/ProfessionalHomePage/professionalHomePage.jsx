@@ -28,8 +28,6 @@ function ProfessionalHomePage() {
         return null;
     }
 
-    console.log(userUnifiedTable.account);
-
     return (
         <div className='container-professional-homePage'>
 

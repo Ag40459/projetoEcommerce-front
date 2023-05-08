@@ -17,6 +17,7 @@ import PostAd from '../src/pages/PostAd/postAd';
 
 import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
 import SearchResult from './pages/SearchResult/searchResult';
+import EditProfileProfessional from './pages/EditProfileProfessional/editProfileProfessional';
 
 function ProtectedRoutes({ redirectTo }) {
   const isAutheticated = true;
@@ -88,6 +89,9 @@ function Main() {
           <Route path='/your-ads-professional' element={<YourAdsProfessional />} />
 
           <Route path='/credits-professional' element={<CreditsProfessional />} />
+
+          <Route path='/edit-profileProfessional' element={<EditProfileProfessional />} />
+
 
 
         </Route>

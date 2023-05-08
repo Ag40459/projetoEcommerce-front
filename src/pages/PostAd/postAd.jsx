@@ -108,8 +108,6 @@ const PostAd = () => {
             }));
         }
         setActiveStep(prevStep => prevStep + 1);
-
-
     };
 
     const handleBack = () => {
@@ -122,8 +120,6 @@ const PostAd = () => {
     };
 
     const handlePlanoChange = (event) => {
-        console.log(formData.plan);
-
         formData.plan = event.target.value
     };
 
