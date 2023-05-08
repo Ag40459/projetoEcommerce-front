@@ -153,8 +153,8 @@ function SignUp() {
                             />
                             <p>
                                 {confirmedPasswordProfessional === passwordProfessional && passwordProfessional !== ''
-                                    ? 'As senhas não coincidem'
-                                    : 'As senhas coincidem'}
+                                    ? 'As senhas coincidem'
+                                    : 'As senhas não coincidem'}
                             </p>
                         </div>
 
