@@ -35,12 +35,14 @@ function ProfessionalProfile() {
 
     return (
         <div className='container-professionalProfile'>
-            <div className='container-professionalProfile-back'>
-                <img
-                    style={{ width: '1rem' }}
-                    src={IconLeft} alt="seta para esquerda" />
-                <Link to='/categories'>
-                    Voltar
+
+            <div className='container-back-page'>
+
+                <Link
+                    className='link'
+                    to='#'
+                    onClick={() => window.history.back()}>
+                    Página Anterior
                 </Link>
             </div>
             <div>

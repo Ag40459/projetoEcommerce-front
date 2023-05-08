@@ -11,6 +11,7 @@ export const GlobalContextProvider = ({ children }) => {
     const [userLogedId, setUserLogedId, removeUserLogedId] = useLocalStorage('userID', '');
     const [theme, setTheme] = useState("Claro");
     const [listCategoryId, setListCategoryId] = useState("");
+    const [listResultSearch, setListResultSearch] = useState("");
     const [categories, setCategories] = useState([]);
     const [emailProfessional, setEmailProfessional] = useState("");
     const [passwordProfessional, setPasswordProfessional] = useState("");
@@ -40,6 +41,8 @@ export const GlobalContextProvider = ({ children }) => {
             idCategory,
             listCategoryId,
             setListCategoryId,
+            listResultSearch,
+            setListResultSearch,
             categories,
             setCategories,
             emailProfessional,

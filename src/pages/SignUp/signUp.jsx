@@ -5,7 +5,7 @@ import Checked from "../../assets/checked.svg";
 import './signUp.css';
 import EyeOpen from "../../assets/Input_Password_Eye_Open.svg";
 import NotChecked from "../../assets/notChecked.svg";
-import hcaptcha from "../../assets/hcaptcha.svg";
+import ReCAPTCHA from 'react-google-recaptcha';
 import React, { useContext, useState } from "react";
 import { GlobalContext } from '../../contexts/GlobalContext';
 
@@ -17,16 +17,17 @@ function SignUp() {
     const [hasUppercase, setHasUppercase] = useState(false);
     const [hasLowercase, setHasLowercase] = useState(false);
     const [hasMinLength, setHasMinLength] = useState(false);
+    const [isChecked, setIsChecked] = useState(false);
+    const [isHuman, setIsHuman] = useState(false);
 
-
-    const checkPassword = {
-        uppercase: false,
-        lowercase: false,
-        qtCharacter: false
-    };
     const navigate = useNavigate();
 
-
+    function handleCheckboxChange() {
+        setIsChecked((prevState) => !prevState);
+    }
+    function handleVerifyReCAPTCHA() {
+        setIsHuman(true);
+    }
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -87,6 +88,7 @@ function SignUp() {
                         onChange={(e) => setEmailProfessional(e.target.value)}
                         value={emailProfessional}
                         placeholder='E-mail' />
+
                     <input
                         type={openClodesEye ? 'password' : 'text'}
                         onChange={(e) => {
@@ -140,31 +142,71 @@ function SignUp() {
                                 src={hasMinLength ? Checked : NotChecked}
                                 alt="checked/ Notchecked" /> <p>Mínimo de 6 caracteres</p>
                         </div>
+                        <div style={{ display: 'flex', gap: '1rem' }}>
+                            <img
+                                src={
+                                    confirmedPasswordProfessional === passwordProfessional && passwordProfessional !== ''
+                                        ? Checked
+                                        : NotChecked
+                                }
+                                alt="checked/ Notchecked"
+                            />
+                            <p>
+                                {confirmedPasswordProfessional === passwordProfessional && passwordProfessional !== ''
+                                    ? 'As senhas não coincidem'
+                                    : 'As senhas coincidem'}
+                            </p>
+                        </div>
+
+
 
 
                     </div>
                 </div>
-                <div className='container-sign-up-terms-and-conditions'>
+
+                <div className="container-sign-up-terms-and-conditions">
                     <h4>Termos, Condições e Política de Privacidade</h4>
-                    <p>Li os <Link to={'/'}> Termos e Condições
-                    </Link> de uso e a <a href='/'> Política de Privacidade</a> e autorizo o processamento dos meus dados pessoais para o fornecimento deste serviço na web.</p>
+
+                    <label
+                        style={{ display: 'flex', gap: '2rem' }}
+                    >
+                        <input
+                            type="checkbox"
+                            name="termsConditions"
+                            id="checkboxTermsConditions"
+                            checked={isChecked}
+                            onChange={handleCheckboxChange}
+                        />
+                        <p>
+                            Li os{" "}
+                            <Link to={"/"}>
+                                Termos e Condições
+                            </Link>{" "}
+                            de uso e a{" "}
+                            <a href={"/"}>Política de Privacidade</a> e autorizo o
+                            processamento dos meus dados pessoais para o fornecimento deste
+                            serviço na web.
+                        </p>
+                    </label>
                 </div>
 
-                <div className='container-sign-up-input-login-hCaptcha'>
-                    <div
-                        style={{ display: 'flex', gap: '3rem' }}>
-
-                        <input type="checkbox" name="" id="checkboxHCaptcha" />
-                        <p id=''>Sou humano</p>
-                    </div>
-
-                    <img
-                        style={{ width: '3rem' }}
-                        src={hcaptcha} alt="hcaptcha" />
+                <div>
+                    <ReCAPTCHA
+                        sitekey="6LddFOklAAAAAPxf4OKxGYmLARudU0pXUD3Ok5vp"
+                        onChange={handleVerifyReCAPTCHA}
+                    />
                 </div>
                 <button
                     type="submit"
-                    style={{ width: '100%' }} >
+                    style={{
+                        width: "100%",
+                        height: "5rem",
+                        backgroundColor: isChecked && isHuman ? "#04C45C" : "#CCCCCC",
+                        borderRadius: "8px",
+                        cursor: isChecked && isHuman ? "pointer" : "not-allowed",
+                    }}
+                    disabled={!isChecked || !isHuman}
+                >
                     CADASTRAR
                 </button>
 

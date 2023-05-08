@@ -107,6 +107,8 @@ button:hover {
     border-radius: 8px;
     border: none;
     font-size: 2rem;
+    padding-left: 1rem;
+
 }
 
 .customization-option {

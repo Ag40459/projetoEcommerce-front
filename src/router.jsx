@@ -16,6 +16,7 @@ import PostAd from '../src/pages/PostAd/postAd';
 
 
 import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
+import SearchResult from './pages/SearchResult/searchResult';
 
 function ProtectedRoutes({ redirectTo }) {
   const isAutheticated = true;
@@ -53,7 +54,7 @@ function Main() {
           } />
 
         <Route
-          path='/page-card'
+          path='/professional-profile'
           element={
             <ProfessionalProfile />
           } />
@@ -70,6 +71,11 @@ function Main() {
             <PostAd />
           } />
 
+        <Route
+          path='/search-result'
+          element={
+            <SearchResult />
+          } />
 
         <Route element={<ProtectedRoutes redirectTo={'/'} />}>
 

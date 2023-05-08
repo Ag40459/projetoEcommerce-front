@@ -1,36 +1,21 @@
-import api from '../../services/api';
 import { Link } from 'react-router-dom';
-import './cardProfile.css';
-import React, { useContext, useEffect } from "react";
+import './cardProfileSearch.css';
+import React, { useContext } from "react";
 import { GlobalContext } from '../../contexts/GlobalContext';
 import { differenceInYears } from 'date-fns';
 
-function CardProfile() {
-    const { idCategory, setListCategoryId, listCategoryId, categories, setIdUserCategory, removeIdUserCategory } = useContext(GlobalContext);
-
-    useEffect(() => {
-        removeIdUserCategory()
-        if (idCategory) {
-            const fetchUnifiedData = async () => {
-                try {
-                    const response = await api.get(`/users/category/${idCategory}`);
-                    setListCategoryId(response.data.users);
-                } catch (error) {
-                    console.error(error);
-                }
-            };
-            fetchUnifiedData();
-        }
-    }, [idCategory]);
+function CardProfileSearch() {
+    const { listResultSearch } = useContext(GlobalContext);
+    console.log(listResultSearch);
 
     return (
-        <div className='container-cardProfile'>
+        <div className='container-CardProfileSearch'>
 
-            {listCategoryId
+            {listResultSearch
                 &&
-                listCategoryId.map(user => (
+                listResultSearch.map(user => (
 
-                    <div className='container-cardProfile-listCategoryId'
+                    <div className='container-CardProfileSearch-listResultSearch'
                         key={user.id}
                     >
                         <img
@@ -47,7 +32,7 @@ function CardProfile() {
                             to='/professional-profile'
                             onClick={() => setIdUserCategory(user.id)}
                         >
-                            <div className='container-cardProfile-description'>
+                            <div className='container-CardProfileSearch-description'>
                                 <h1>
                                     {user.title}
                                 </h1>
@@ -55,14 +40,14 @@ function CardProfile() {
                                     id='teste' >
                                     {user.description}
                                 </h3>
-                                <div className='container-cardProfile-description-detail'>
+                                <div className='container-CardProfileSearch-description-detail'>
                                     <p>
                                         {differenceInYears(new Date(), new Date(user.birthdate))} anos
                                     </p>
                                     <p>
-                                        {categories.find(category => category.id === user.category_id)?.title}
+                                        {listResultSearch.find(resultSearch => resultSearch.id === user.category_id)?.title}
                                     </p>
-                                    <p id='container-cardProfile-description-detail-p'>
+                                    <p id='container-CardProfileSearch-description-detail-p'>
                                         {user.city}
                                     </p>
                                 </div>
@@ -77,4 +62,4 @@ function CardProfile() {
     )
 }
 
-export default CardProfile;
+export default CardProfileSearch;

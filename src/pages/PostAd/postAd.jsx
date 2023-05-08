@@ -23,7 +23,7 @@ const PostAd = () => {
     const [phone, setPhone] = useState("");
     const [titleError, setTitleError] = useState("");
     const [descriptionError, setDescriptionError] = useState("");
-    const [isLoading, tate(false);
+    const [isLoading, setIsLoading] = useState(false);
     const [buttonDisabled, setButtonDisabled] = useState(true);
     const [formData, setFormData] = useState({
         name: '',
@@ -97,6 +97,7 @@ const PostAd = () => {
         const birthdate = new Date(formData.birthdate);
         const ageDiff = currentDate - birthdate;
         const ageInYears = ageDiff / (1000 * 60 * 60 * 24 * 365);
+
         if (ageInYears < 18) {
             alert("Você deve ter mais de 18 anos .");
             return;
@@ -120,15 +121,10 @@ const PostAd = () => {
         }));
     };
 
-    const handleReset = () => {
-        setActiveStep(0);
-        setPlano("");
-        setImagens([]);
-        setFormaDePagamento("");
-    };
-
     const handlePlanoChange = (event) => {
-        setPlano(event.target.value);
+        console.log(formData.plan);
+
+        formData.plan = event.target.value
     };
 
     const handleImagensChange = (event) => {
@@ -149,18 +145,17 @@ const PostAd = () => {
         const { category_id, ...dataWithoutCategoryId } = formData;
 
         if (formData.title.length < 5) {
-
             alert("O título deve ter no mínimo 5 caracteres.");
             return;
         }
 
         if (formData.description.length < 20) {
-
             alert("A descrição deve ter no mínimo 20 caracteres.");
             return;
         }
 
         try {
+            console.log(dataWithoutCategoryId);
             const response = await api.patch(
                 `/users/updateUser/${userLogedId} `,
                 dataWithoutCategoryId,
@@ -171,11 +166,9 @@ const PostAd = () => {
                 }
             );
             if (response.status === 200) {
-
                 alert('Dados atualizados com sucesso!');
             }
         } catch (error) {
-
             alert('Erro ao atualizar dados.');
             console.error(error);
         }
@@ -330,9 +323,18 @@ const PostAd = () => {
                             onChange={handlePlanoChange}
                         >
                             <option disabled value="">Selecione seu Plano</option>
-                            <option value="plano1">Free</option>
-                            <option value="plano2">Premium</option>
-                            <option value="plano3">Platina</option>
+                            <option
+                                value="Free">
+                                Free
+                            </option>
+                            <option
+                                value="Premium">
+                                Premium
+                            </option>
+                            <option
+                                value="Platina">
+                                Platina
+                            </option>
                         </select>
                         <br />
                         <Button

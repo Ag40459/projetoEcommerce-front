@@ -4,30 +4,59 @@ import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { GlobalContext } from "../../contexts/GlobalContext";
 import { slide as Menu } from "react-burger-menu";
+import api from '../../services/api'
 import "./navBar.css";
 
 const Navbar = () => {
-  const { token, userUnifiedTable, removeUserLogedId, removeToken, categories } = useContext(GlobalContext);
+  const { token, userUnifiedTable, removeUserLogedId, removeToken, setListResultSearch } = useContext(GlobalContext);
   const [modalOpenCloseSearch, setModalOpenCloseSearch] = useState(false);
   const [modalOpenCloseMenu, setModalOpenCloseMenu] = useState(false);
   const [display, setdisplay] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
-
 
   const handleExit = async (e) => {
     removeUserLogedId()
     removeToken()
     return navigate('/');
   };
+
   const handleClickSearch = async (e) => {
     setModalOpenCloseSearch(!modalOpenCloseSearch)
     if (setdisplay === "flex") {
       setdisplay("none")
     } else {
       setdisplay("flex")
-
     }
   };
+
+  const handleSearch = async () => {
+    const query = searchQuery.trim();
+
+    if (query.length == 0) {
+      alert('Você precisa digitar algum dado');
+      return;
+    }
+
+    try {
+      const response = await api.get(`/users/search?search=${query}`);
+
+      if (response.data.data.users.length > 0) {
+        const listSearch = response.data.data.users;
+        setListResultSearch(listSearch);
+        navigate('/search-result');
+      } else {
+        alert(`Nenhum resultado encontrado para "${query}". Tente novamente com uma pesquisa diferente.`);
+      }
+    } catch (error) {
+      alert(`Nenhum resultado encontrado para "${query}". Tente novamente com uma pesquisa diferente.`);
+    }
+  };
+
+  const handleInputChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
   return (
     <nav className="navbar">
 
@@ -116,31 +145,22 @@ const Navbar = () => {
         ?
         <div className='container-NavBarInitial-search'>
 
-          <select
-            name=""
-            className="customization-option"
-          >
-            <option
-              value="">
-              Selecione uma Categoria ...
-            </option>
-            {categories.map(category => (
-              <option
-                key={category.id}
-                value={category.title}>
-                {category.title}
-              </option>
-            )
-            )
-            }
-          </select>
           <input
             type="text"
-            placeholder='  Pesquise aqui ...' />
-          <button>PESQUISAR...
+            placeholder='Pesquise aqui ...'
+            className="with-padding"
+            value={searchQuery}
+            onChange={handleInputChange}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter') {
+                handleSearch();
+              }
+            }}
+          />
+          <button onClick={handleSearch}>PESQUISAR...</button>
 
-          </button>
           <img
+            onClick={handleSearch}
             className='container-NavBarInitial-search-media888'
             src={Search}
             alt='Lupa'
