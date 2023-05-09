@@ -6,9 +6,9 @@ import api from '../services/api';
 
 export const GlobalContextProvider = ({ children }) => {
     const [token, setToken, removeToken] = useLocalStorage('token', '');
-    const [idCategory, setIdCategory, removeIdCategory] = useLocalStorage('idCategory', '');
-    const [idUserCategory, setIdUserCategory, removeIdUserCategory] = useLocalStorage('idUserCategory', '');
-    const [userLogedId, setUserLogedId, removeUserLogedId] = useLocalStorage('userID', '');
+    const [idCategory, setIdCategory] = useState();
+    const [idUserCategory, setIdUserCategory] = useState();
+    const [userLogedId, setUserLogedId] = useState();
     const [theme, setTheme] = useState("Claro");
     const [listCategoryId, setListCategoryId] = useState("");
     const [listResultSearch, setListResultSearch] = useState("");
@@ -17,10 +17,10 @@ export const GlobalContextProvider = ({ children }) => {
     const [passwordProfessional, setPasswordProfessional] = useState("");
     const [confirmedPasswordProfessional, setConfirmedPasswordProfessional] = useState("");
     const [userUnifiedTable, setUserUnifiedTable] = useState(null);
+    const [userIdSearch, setUserIdSearch] = useState();
 
     useEffect(() => {
-        removeIdCategory();
-
+        removeToken()
         api.get('/categories')
             .then(response => {
                 setCategories(response.data);
@@ -37,7 +37,6 @@ export const GlobalContextProvider = ({ children }) => {
             theme,
             setTheme,
             setIdCategory,
-            removeIdCategory,
             idCategory,
             listCategoryId,
             setListCategoryId,
@@ -56,12 +55,12 @@ export const GlobalContextProvider = ({ children }) => {
             removeToken,
             userLogedId,
             setUserLogedId,
-            removeUserLogedId,
             userUnifiedTable,
             setUserUnifiedTable,
             idUserCategory,
             setIdUserCategory,
-            removeIdUserCategory
+            userIdSearch,
+            setUserIdSearch
 
         }}>
             {children}

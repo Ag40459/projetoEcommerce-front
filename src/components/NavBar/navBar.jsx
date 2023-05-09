@@ -8,7 +8,7 @@ import api from '../../services/api'
 import "./navBar.css";
 
 const Navbar = () => {
-  const { token, userUnifiedTable, removeUserLogedId, removeToken, setListResultSearch } = useContext(GlobalContext);
+  const { token, userUnifiedTable, removeToken, setListResultSearch } = useContext(GlobalContext);
   const [modalOpenCloseSearch, setModalOpenCloseSearch] = useState(false);
   const [modalOpenCloseMenu, setModalOpenCloseMenu] = useState(false);
   const [display, setdisplay] = useState(false);
@@ -16,7 +16,6 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const handleExit = async (e) => {
-    removeUserLogedId()
     removeToken()
     return navigate('/');
   };

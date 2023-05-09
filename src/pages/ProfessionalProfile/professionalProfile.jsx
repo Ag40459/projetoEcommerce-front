@@ -4,17 +4,30 @@ import IconLeft from '../../assets/arrow-left.svg'
 import { Link } from 'react-router-dom';
 import React, { useContext, useEffect, useState } from "react";
 import { GlobalContext } from '../../contexts/GlobalContext';
-import dayjs from 'dayjs';
 import 'dayjs/locale/pt-br';
+import dayjs from 'dayjs';
 import './professionalProfile.css';
 
 function ProfessionalProfile() {
-    const { idUserCategory, categories } = useContext(GlobalContext);
+
+    const { userIdSearch, categories, idUserCategory } = useContext(GlobalContext);
     const [user, setUser] = useState("");
     const [currentDate, setCurrentDate] = useState("");
+
     useEffect(() => {
-        console.log(user);
-        if (idUserCategory) {
+
+        if (userIdSearch) {
+            const fetchUnifiedData = async () => {
+                try {
+                    const response = await api.get(`/users/unified-tabled/${userIdSearch}`);
+                    setUser(response.data.user);
+                } catch (error) {
+                    console.error(error);
+                }
+            };
+            fetchUnifiedData();
+        }
+        else if (idUserCategory) {
             const fetchUnifiedData = async () => {
                 try {
                     const response = await api.get(`/users/unified-tabled/${idUserCategory}`);
@@ -26,7 +39,8 @@ function ProfessionalProfile() {
             fetchUnifiedData();
         }
         setCurrentDate(dayjs().locale('pt-br').format('DD/MM/YYYY'));
-    }, [idUserCategory]);
+
+    }, [userIdSearch, idUserCategory]);
 
     const getCategoryTitle = (categoryId) => {
         const category = categories.find(cat => cat.id === categoryId);

@@ -5,8 +5,7 @@ import { GlobalContext } from '../../contexts/GlobalContext';
 import { differenceInYears } from 'date-fns';
 
 function CardProfileSearch() {
-    const { listResultSearch } = useContext(GlobalContext);
-    console.log(listResultSearch);
+    const { listResultSearch, categories, setUserIdSearch } = useContext(GlobalContext);
 
     return (
         <div className='container-CardProfileSearch'>
@@ -29,8 +28,8 @@ function CardProfileSearch() {
 
                         <Link
                             className='link'
+                            onClick={() => setUserIdSearch(user.id)}
                             to='/professional-profile'
-                            onClick={() => setIdUserCategory(user.id)}
                         >
                             <div className='container-CardProfileSearch-description'>
                                 <h1>
@@ -45,7 +44,7 @@ function CardProfileSearch() {
                                         {differenceInYears(new Date(), new Date(user.birthdate))} anos
                                     </p>
                                     <p>
-                                        {listResultSearch.find(resultSearch => resultSearch.id === user.category_id)?.title}
+                                        {categories.find(categorie => categorie.id === user.category_id)?.title}
                                     </p>
                                     <p id='container-CardProfileSearch-description-detail-p'>
                                         {user.city}

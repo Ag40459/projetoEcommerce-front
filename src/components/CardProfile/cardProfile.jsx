@@ -6,10 +6,10 @@ import { GlobalContext } from '../../contexts/GlobalContext';
 import { differenceInYears } from 'date-fns';
 
 function CardProfile() {
-    const { idCategory, setListCategoryId, listCategoryId, categories, setIdUserCategory, removeIdUserCategory } = useContext(GlobalContext);
+    const { idCategory, setListCategoryId, listCategoryId, categories, setIdUserCategory } = useContext(GlobalContext);
 
     useEffect(() => {
-        removeIdUserCategory()
+
         if (idCategory) {
             const fetchUnifiedData = async () => {
                 try {

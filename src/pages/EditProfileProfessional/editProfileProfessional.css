@@ -27,7 +27,8 @@
     gap: 1rem;
 }
 
-#inputPasswordProfessional {
+.container-editProfileProfessional-inputLabel #inputPasswordProfessional {
+
     position: absolute;
     top: 1.5rem;
 }

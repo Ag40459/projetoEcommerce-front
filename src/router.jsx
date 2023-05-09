@@ -1,4 +1,3 @@
-import React from 'react';
 import Home from './pages/home/home';
 import Categories from '../src/pages/Categories/categories';
 import ForgotPassword from '../src/pages/ForgotPassword/forgotPassword';
@@ -11,17 +10,16 @@ import CreditsProfessional from '../src/pages/CreditsProfessional/creditsProfess
 import TransactionHistory from '../src/pages/TransactionHistory/transactionHistory';
 import YourAdsProfessional from '../src/pages/YourAdsProfessional/yourAdsProfessional';
 import PostAd from '../src/pages/PostAd/postAd';
-
-
-
-
 import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
 import SearchResult from './pages/SearchResult/searchResult';
 import EditProfileProfessional from './pages/EditProfileProfessional/editProfileProfessional';
+import React, { useContext } from "react";
+import { GlobalContext } from '../src/contexts/GlobalContext';
 
 function ProtectedRoutes({ redirectTo }) {
-  const isAutheticated = true;
-  return isAutheticated ? <Outlet /> : <Navigate to={redirectTo} />
+  const { token } = useContext(GlobalContext);
+
+  return token ? <Outlet /> : <Navigate to={redirectTo} />
 }
 
 function Main() {

@@ -8,12 +8,7 @@ import { GlobalContext } from '../../contexts/GlobalContext';
 
 export function CardCategory() {
 
-    const { setIdCategory, categories, removeIdCategory } = useContext(GlobalContext);
-
-
-    useEffect(() => {
-        removeIdCategory();
-    }, []);
+    const { setIdCategory, categories } = useContext(GlobalContext);
 
     const handleSelectIdCategory = (event) => {
         return setIdCategory(event);

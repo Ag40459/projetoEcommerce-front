@@ -73,7 +73,6 @@ function SignUp() {
     }
 
     useEffect(() => {
-        // carrega a biblioteca do reCAPTCHA Enterprise
         const script = document.createElement("script");
         script.src = "https://www.google.com/recaptcha/enterprise.js?onload=onLoadCallback&render=" + siteKey;
         script.async = true;
@@ -125,7 +124,7 @@ function SignUp() {
                         id='inputPasswordProfessional'
                         className='openCloseEye'
                         onClick={() => setOpenClodesEye(!openClodesEye)}
-                        src={openClodesEye ? EyeClose : EyeOpen}
+                        src={!openClodesEye ? EyeClose : EyeOpen}
                         alt="olho sem corte?olho com corte" />
 
                     <input
@@ -140,7 +139,7 @@ function SignUp() {
                         id='inputConfirmedPasswordProfessional'
                         className='openCloseEye'
                         onClick={() => setOpenClodesEyeConfirmed(!openClodesEyeConfirmed)}
-                        src={openClodesEyeConfirmed ? EyeClose : EyeOpen}
+                        src={!openClodesEyeConfirmed ? EyeClose : EyeOpen}
                         alt="olho sem corte?olho com corte" />
                 </div>
 

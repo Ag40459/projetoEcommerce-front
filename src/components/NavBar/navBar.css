@@ -103,6 +103,7 @@ button:hover {
     height: 48px;
     left: 123px;
     top: 442px;
+    margin-left: 2rem;
     background: rgba(255, 255, 255, 0.16);
     border-radius: 8px;
     border: none;
@@ -306,12 +307,11 @@ button:hover {
 
     .bm-burger-button {
         display: flex;
-        position: fixed;
+        position: absolute;
         width: 36px;
         height: 30px;
         right: 36px;
-        top: 2.5rem;
-        /* border: 1px solid red; */
+        top: 5rem;
     }
 
     .bm-burger-bars {
@@ -363,7 +363,7 @@ button:hover {
     }
 
     .bm-menu .bm-cross-button {
-        position: relative;
+        position: absolute;
         top: 5px;
         right: 5px;
         height: 24px;

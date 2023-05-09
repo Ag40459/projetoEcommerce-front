@@ -88,6 +88,7 @@ const PostAd = () => {
     function handlePhone(event) {
         const { name, value } = event.target;
         setPhone(formatPhoneNumber(event.target.value));
+        console.log(value);
         checkFormValidity();
         return setFormData((prevState) => ({ ...prevState, [name]: value }));
     }
