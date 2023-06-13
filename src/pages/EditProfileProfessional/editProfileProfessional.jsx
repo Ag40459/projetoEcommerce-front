@@ -55,9 +55,12 @@ function EditProfileProfessional() {
         }
         fetchData();
 
+        if (formData?.phone) {
+
+            console.log((formatPhoneNumber(formData.phone)))
+        }
+
     }, []);
-
-
     useEffect(() => {
         async function fetchCities() {
             try {
@@ -81,7 +84,6 @@ function EditProfileProfessional() {
         }
         fetchCities();
     }, [selectedState, isFormDataReady]);
-
 
     useEffect(() => {
         if (userLogedId) {
@@ -109,25 +111,37 @@ function EditProfileProfessional() {
 
     function formatPhoneNumber(value) {
         const phoneNumber = value.replace(/\D/g, "");
-
         if (phoneNumber.length === 11) {
             return `(${phoneNumber.slice(0, 2)}) ${phoneNumber.slice(2, 7)}-${phoneNumber.slice(7)}`;
+        }
+        else if (phoneNumber.length === 13) {
+          return setPhone(formatPhoneNumberForDisplay(phoneNumber));
         } else {
             return phoneNumber;
         }
-    }
 
+    }
+console.log(phone);
     function formatPhoneNumberForDisplay(phone) {
-        if (phone.length !== 11) {
+        if (phone.length == 11) {
+            const countryCode = "+55";
+            const areaCode = phone.substring(0, 2);
+            const firstPart = phone.substring(2, 7);
+            const secondPart = phone.substring(7);
+                return `${countryCode} ${areaCode} ${firstPart}${secondPart}`;
+        }
+        else if (phone.length == 13) {
+            const ddd = phone.slice(2, 4);
+            const firstPart = phone.slice(4, 9);
+            const secondPart = phone.slice(9);
+
+
+  return `phoneNumber=(${ddd}) ${firstPart} ${secondPart}`;
+        } else {
+
             return phone;
         }
 
-        const countryCode = "+55";
-        const areaCode = phone.substring(0, 2);
-        const firstPart = phone.substring(2, 7);
-        const secondPart = phone.substring(7);
-
-        return `${countryCode} ${areaCode} ${firstPart}${secondPart}`;
     }
 
 
@@ -136,11 +150,9 @@ function EditProfileProfessional() {
         const formattedPhone = formatPhoneNumber(phone);
         setPhone(formattedPhone);
         const newPhone = formatPhoneNumberForDisplay(phone)
-        console.log(newPhone);
         checkFormValidity();
         return setFormData({ ...formData, phone: newPhone });
-    }
-
+            }
 
     const handleStateChange = (event) => {
         const selectedValue = event.target.options[event.target.selectedIndex].innerText;
@@ -157,13 +169,11 @@ function EditProfileProfessional() {
     const handleChange = (event) => {
         setFormData({ ...formData, [event.target.name]: event.target.value });
     };
-
     const handleSubmit = async (event) => {
         event.preventDefault();
-
-        const formattedPhoneNumber = phoneNumber && parseInt(phoneNumber.replace(/^(\+\d{2})(\d{2})(\d{5})(\d{4})$/, '$1 $2 $3-$4'));
+        // const formattedPhoneNumber = phoneNumber && parseInt(phoneNumber.replace(/^(\+\d{2})(\d{2})(\d{5})(\d{4})$/, '$1 $2 $3-$4'));
         const formattedBirthdate = format(new Date(formData.birthdate), 'yyyy-MM-dd');
-        const updatedFormData = { ...formData, phone: formattedPhoneNumber, birthdate: formattedBirthdate };
+        const updatedFormData = { ...formData, birthdate: formattedBirthdate };
 
         if (updatedFormData.password && updatedFormData.confirm_password && updatedFormData.password !== updatedFormData.confirm_password) {
             alert("Erro: As senhas digitadas não são iguais. Por favor, tente novamente.");
@@ -194,7 +204,6 @@ function EditProfileProfessional() {
     if (!userUnifiedTable) {
         return null;
     }
-    console.log(formData);
 
 
     return (
